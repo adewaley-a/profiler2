@@ -1,0 +1,147 @@
+body{
+    background-color: rgb(14, 14, 14);
+    
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+.displaycover{
+    color:  rgb(171, 232, 179);
+    text-align: center;
+    border: 1px solid green;
+    height: fit-content;
+    width: 80%;
+    margin: auto;
+    margin-top: 6px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-top: 0;
+    background: linear-gradient(to bottom right, rgba(0, 128, 0, 0.449), rgba(0, 0, 0, 0.406));
+}
+
+.socialcover{
+    display: grid;
+    width: 34%;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+
+.socialbtn{
+    border-radius: 6px;
+    display: inline-block;
+    background: rgb(0, 177, 0);
+    margin: 10px 0 0 10px;
+    flex-grow: 1;
+    height: 30px;
+    line-height: 30px;
+    font-size: 95%;
+    color: #ffffff;
+}
+.gc{
+    border-radius: 6px;
+    background:  rgb(0, 177, 0);
+    height: 30px;
+    line-height: 30px;
+    width: 34%;
+    margin: auto;
+    margin-bottom: 22px;
+    font-size: 95%;
+    color: #ffffff;
+}
+.bot{
+   width: 90px;
+   height: 90px;
+   
+}
+.title{
+    font-size: 95%;
+    margin-bottom: 0;
+ }
+ .name{
+   font-size: 140%;
+   font-family: "Russo One", sans-serif;
+   --bg-size: 400%;
+   --color-one:  rgb(29, 255, 29);
+   --color-two: rgb(18, 18, 18);
+  
+   background: linear-gradient(
+                 90deg,
+                 var(--color-one),
+                 var(--color-two),
+                 var(--color-one),
+                 var(--color-one)
+               ) 0 0 / var(--bg-size) 100%;
+   color: transparent;
+   background-clip: text;
+   -webkit-background-clip: text;
+   animation: move-bg 9s infinite linear;
+ }
+ @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+  
+ 
+ .swip{
+    width: 34%;
+    margin-bottom: 25px;
+    font-size: 90%;
+   
+  }
+  .Swiperslide{
+   border-top: 1px solid rgb(0, 177, 0);
+   border-bottom: 1px solid rgb(0, 177, 0);
+  }
+  .birthinput{
+    margin-bottom: 22px;
+    font-size: 90%;
+  }
+  #about{
+   border: 2px solid #008000;
+   width: 65%;
+   padding: 10px;
+   margin: auto;
+   text-align: center;
+   border-radius: 9px;
+  }
+  .gca{
+    display: grid;
+    width: 34%;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: auto;
+    margin-top: 15px;
+  }
+  .gco{
+    border-radius: 6px;
+    display: inline-block;
+    background: rgb(0, 177, 0);
+    margin: 10px 0 0 10px;
+    flex-grow: 1;
+    height: 30px;
+    line-height: 30px;
+    font-size: 95%;
+    color: #ffffff;
+    
+}
+.gci{
+    border-radius: 6px;
+    display: inline-block;
+    background: rgba(0, 177, 0, 0.399);
+    margin: 10px 0 0 10px;
+    flex-grow: 1;
+    height: 30px;
+    line-height: 30px;
+    font-size: 95%;
+    color: #ffffff;
+    border: 1px solid white;
+}
+#copy{
+    width: 20px;
+    height: 17px;
+    margin-top: 7.5px;
+}
+.gclink{
+  display: none;
+}
