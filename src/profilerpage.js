@@ -1,14 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, auth } from './firebase';
 import Profilerpage1 from './profilerpage1';
 import Display from './display';
 import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
-import { signOut, auth } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
+import { useParams } from 'react-router-dom';
 
 const Notes = () => {
+
+  const { uid } = useParams()
+
+
   //page 0 start
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
@@ -26,14 +31,14 @@ const Notes = () => {
     };
 
     fetchNotes();
-  }, []);
+  }, [uid]);
 
   const [show, setShow] = useState(true)
   // Add a new note to Firestore
 
   const handleAddNote = async () => {
     if (newNote.trim()) {
-      await addDoc(collection(db, 'notes'), { text: newNote });
+      await addDoc(collection(db, 'notes'), { text: newNote,uid: uid });
       setNewNote('');
       // Refresh notes
       const notesSnapshot = await getDocs(collection(db, 'notes'));
@@ -74,14 +79,14 @@ const Notes = () => {
      };
  
      fetchNotes();
-   }, []);
+   }, [uid]);
  
    const [show1, setShow1] = useState(true)
    // Add a new note to Firestore
  
    const handleAddNote1 = async () => {
      if (newNote1.trim()) {
-       await addDoc(collection(db, 'notes1'), { text: newNote1 });
+       await addDoc(collection(db, 'notes1'), { text: newNote1,uid: uid });
        setNewNote1('');
        // Refresh notes
        const notesSnapshot = await getDocs(collection(db, 'notes1'));
@@ -122,14 +127,14 @@ const Notes = () => {
       };
   
       fetchNotes();
-    }, []);
+    }, [uid]);
   
     const [show2, setShow2] = useState(true)
     // Add a new note to Firestore
   
     const handleAddNote2 = async () => {
       if (newNote2.trim()) {
-        await addDoc(collection(db, 'notes2'), { text: newNote2 });
+        await addDoc(collection(db, 'notes2'), { text: newNote2,uid: uid });
         setNewNote2('');
         // Refresh notes
         const notesSnapshot = await getDocs(collection(db, 'notes2'));
@@ -170,14 +175,14 @@ const Notes = () => {
        };
    
        fetchNotes();
-     }, []);
+     }, [uid]);
    
      const [show3, setShow3] = useState(true)
      // Add a new note to Firestore
    
      const handleAddNote3 = async () => {
        if (newNote3.trim()) {
-         await addDoc(collection(db, 'notes3'), { text: newNote3 });
+         await addDoc(collection(db, 'notes3'), { text: newNote3,uid: uid });
          setNewNote3('');
          // Refresh notes
          const notesSnapshot = await getDocs(collection(db, 'notes3'));
@@ -218,14 +223,14 @@ const Notes = () => {
         };
     
         fetchNotes();
-      }, []);
+      }, [uid]);
     
       const [show4, setShow4] = useState(true)
       // Add a new note to Firestore
     
       const handleAddNote4 = async () => {
         if (newNote4.trim()) {
-          await addDoc(collection(db, 'notes4'), { text: newNote4 });
+          await addDoc(collection(db, 'notes4'), { text: newNote4,uid: uid });
           setNewNote4('');
           // Refresh notes
           const notesSnapshot = await getDocs(collection(db, 'notes4'));
@@ -266,14 +271,14 @@ const Notes = () => {
          };
      
          fetchNotes();
-       }, []);
+       }, [uid]);
      
        const [show5, setShow5] = useState(true)
        // Add a new note to Firestore
      
        const handleAddNote5 = async () => {
          if (newNote5.trim()) {
-           await addDoc(collection(db, 'notes5'), { text: newNote5 });
+           await addDoc(collection(db, 'notes5'), { text: newNote5,uid: uid });
            setNewNote5('');
            // Refresh notes
            const notesSnapshot = await getDocs(collection(db, 'notes5'));
@@ -316,14 +321,14 @@ const Notes = () => {
          };
      
          fetchNotes();
-       }, []);
+       }, [uid]);
      
        const [show6, setShow6] = useState(true)
        // Add a new note to Firestore
      
        const handleAddNote6 = async () => {
          if (newNote6.trim()) {
-           await addDoc(collection(db, 'notes6'), { text: newNote6 });
+           await addDoc(collection(db, 'notes6'), { text: newNote6,uid: uid });
            setNewNote6('');
            // Refresh notes
            const notesSnapshot = await getDocs(collection(db, 'notes6'));
@@ -365,14 +370,14 @@ const Notes = () => {
           };
       
           fetchNotes();
-        }, []);
+        }, [uid]);
       
         const [show7, setShow7] = useState(true)
         // Add a new note to Firestore
       
         const handleAddNote7 = async () => {
           if (newNote7.trim()) {
-            await addDoc(collection(db, 'notes7'), { text: newNote7 });
+            await addDoc(collection(db, 'notes7'), { text: newNote7,uid: uid });
             setNewNote7('');
             // Refresh notes
             const notesSnapshot = await getDocs(collection(db, 'notes7'));
@@ -415,14 +420,14 @@ const Notes = () => {
            };
        
            fetchNotes();
-         }, []);
+         }, [uid]);
        
          const [show8, setShow8] = useState(true)
          // Add a new note to Firestore
        
          const handleAddNote8 = async () => {
            if (newNote8.trim()) {
-             await addDoc(collection(db, 'notes8'), { text: newNote8 });
+             await addDoc(collection(db, 'notes8'), { text: newNote8,uid: uid });
              setNewNote8('');
              // Refresh notes
              const notesSnapshot = await getDocs(collection(db, 'notes8'));
@@ -464,14 +469,14 @@ const Notes = () => {
            };
        
            fetchNotes();
-         }, []);
+         }, [uid]);
        
          const [show9, setShow9] = useState(true)
          // Add a new note to Firestore
        
          const handleAddNote9 = async () => {
            if (newNote9.trim()) {
-             await addDoc(collection(db, 'notes9'), { text: newNote9 });
+             await addDoc(collection(db, 'notes9'), { text: newNote9,uid: uid });
              setNewNote9('');
              // Refresh notes
              const notesSnapshot = await getDocs(collection(db, 'notes9'));
@@ -513,14 +518,14 @@ const Notes = () => {
             };
         
             fetchNotes();
-          }, []);
+          }, [uid]);
         
           const [show10, setShow10] = useState(true)
           // Add a new note to Firestore
         
           const handleAddNote10 = async () => {
             if (newNote10.trim()) {
-              await addDoc(collection(db, 'notes10'), { text: newNote10 });
+              await addDoc(collection(db, 'notes10'), { text: newNote10,uid: uid });
               setNewNote10('');
               // Refresh notes
               const notesSnapshot = await getDocs(collection(db, 'notes10'));
@@ -562,14 +567,14 @@ const Notes = () => {
              };
          
              fetchNotes();
-           }, []);
+           }, [uid]);
          
            const [show11, setShow11] = useState(true)
            // Add a new note to Firestore
          
            const handleAddNote11 = async () => {
              if (newNote11.trim()) {
-               await addDoc(collection(db, 'notes11'), { text: newNote11 });
+               await addDoc(collection(db, 'notes11'), { text: newNote11,uid: uid });
                setNewNote11('');
                // Refresh notes
                const notesSnapshot = await getDocs(collection(db, 'notes11'));
@@ -610,14 +615,14 @@ const Notes = () => {
               };
           
               fetchNotes();
-            }, []);
+            }, [uid]);
           
             const [show12, setShow12] = useState(true)
             // Add a new note to Firestore
           
             const handleAddNote12 = async () => {
               if (newNote12.trim()) {
-                await addDoc(collection(db, 'notes12'), { text: newNote12 });
+                await addDoc(collection(db, 'notes12'), { text: newNote12,uid: uid });
                 setNewNote12('');
                 // Refresh notes
                 const notesSnapshot = await getDocs(collection(db, 'notes12'));
@@ -659,14 +664,14 @@ const Notes = () => {
              };
          
              fetchNotes();
-           }, []);
+           }, [uid]);
          
            const [show13, setShow13] = useState(true)
            // Add a new note to Firestore
          
            const handleAddNote13 = async () => {
              if (newNote13.trim()) {
-               await addDoc(collection(db, 'notes13'), { text: newNote13 });
+               await addDoc(collection(db, 'notes13'), { text: newNote13,uid: uid });
                setNewNote13('');
                // Refresh notes
                const notesSnapshot = await getDocs(collection(db, 'notes13'));
@@ -708,14 +713,14 @@ useEffect(() => {
   };
 
   fetchNotes();
-}, []);
+}, [uid]);
 
 const [show14, setShow14] = useState(true)
 // Add a new note to Firestore
 
 const handleAddNote14 = async () => {
   if (newNote14.trim()) {
-    await addDoc(collection(db, 'notes14'), { text: newNote14 });
+    await addDoc(collection(db, 'notes14'), { text: newNote14,uid: uid });
     setNewNote14('');
     // Refresh notes
     const notesSnapshot = await getDocs(collection(db, 'notes14'));
@@ -757,14 +762,14 @@ useEffect(() => {
   };
 
   fetchNotes();
-}, []);
+}, [uid]);
 
 const [show15, setShow15] = useState(true)
 // Add a new note to Firestore
 
 const handleAddNote15 = async () => {
   if (newNote15.trim()) {
-    await addDoc(collection(db, 'notes15'), { text: newNote15 });
+    await addDoc(collection(db, 'notes15'), { text: newNote15,uid: uid });
     setNewNote15('');
     // Refresh notes
     const notesSnapshot = await getDocs(collection(db, 'notes15'));

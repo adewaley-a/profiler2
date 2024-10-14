@@ -13,8 +13,13 @@ function ProfilerLogin(){
        
         try
 
-        { await createUserWithEmailAndPassword(auth, email, password)
-                navigate("profilerpage")
+        { const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+           
+                const user = userCredential.user
+                console.log("User registered with UID:", user.uid)
+                navigate(`/user/${user.uid}`)
+                return user.uid
+
         }
        
         catch(err){console.error(err)}
@@ -24,11 +29,19 @@ function ProfilerLogin(){
        
         try
 
-        { await signInWithEmailAndPassword(auth, email, password)
-                navigate("profilerpage")
+        { const userCredential = await signInWithEmailAndPassword(auth, email, password)
+                
+                const user = userCredential.user
+                console.log("User logged in with UID:", user.uid)
+                navigate(`/user/${user.uid}`)
+                return user.uid
+
+                
         }
        
         catch(err){console.error(err)}
+
+        
     }
    
 

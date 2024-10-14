@@ -14,7 +14,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<ProfilerLogin/>}/>
-        <Route path="profilerpage" element={<ProfilerPage></ProfilerPage>}/>
+        <Route path="/user/:uid" element={<ProfilerPage></ProfilerPage>}/>
        
         
       </Routes>
