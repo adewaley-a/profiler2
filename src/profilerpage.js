@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { db, auth } from './firebase';
 import Profilerpage1 from './profilerpage1';
 import Display from './display';
@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 const Notes = () => {
 
   const { uid } = useParams()
+  
 
 
   //page 0 start
@@ -21,44 +22,58 @@ const Notes = () => {
   // Fetch notes from Firestore
   useEffect(() => {
     const fetchNotes = async () => {
-      const notesCollection = collection(db, 'notes');
-      const notesSnapshot = await getDocs(notesCollection);
-      const notesList = notesSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setNotes(notesList);
+      const user = auth.currentUser; // Get the currently signed-in user
+
+      if (user) {
+        const userUid = user.uid; // Get the user's unique ID
+
+        // Fetch notes for the specific user from their own notes collection
+        const notesCollection = collection(db, 'users', userUid, 'notes'); 
+        const notesSnapshot = await getDocs(notesCollection);
+        
+        // Map the documents to an array and set the state
+        const notesList = notesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setNotes(notesList); // Set notes to display them
+      } else {
+        console.log("No user is signed in");
+      }
     };
 
     fetchNotes();
-  }, [uid]);
+  }, []);
 
   const [show, setShow] = useState(true)
   // Add a new note to Firestore
 
   const handleAddNote = async () => {
-    if (newNote.trim()) {
-      await addDoc(collection(db, 'notes'), { text: newNote,uid: uid });
+    if (newNote.trim() && uid) {
+      // Add the note to the specific user's notes collection
+      await addDoc(collection(db, 'users', uid, 'notes'), { text: newNote, uid: uid });
       setNewNote('');
-      // Refresh notes
-      const notesSnapshot = await getDocs(collection(db, 'notes'));
+
+      // Refresh notes after adding the new one
+      const notesSnapshot = await getDocs(collection(db, 'users', uid, 'notes'));
       const notesList = notesSnapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
-      setNotes(notesList);
-
-      setShow(false)
+      setNotes(notesList); // Update the notes with the newly added note
+      setShow(false);
     }
   };
 
   // Delete a note from Firestore
-  const handleDeleteNote = async (id) => {
-    await deleteDoc(doc(db, 'notes', id));
-    setNotes(notes.filter(note => note.id !== id));
-    
+
+  const handleDeleteNote = async (noteId) => {
+    if (uid) {
+      // Delete the note from the specific user's notes collection
+      await deleteDoc(doc(db, 'users', uid, 'notes', noteId));
+      setNotes(notes.filter(note => note.id !== noteId)); // Update state to remove the note
+    }
     setShow(true)
-    
   };
   //page 0 end
 
@@ -796,17 +811,7 @@ const handleDeleteNote15 = async (id) => {
 
 const Next=async()=>{
        
-  try
-
-  { await signOut()
-         
-  }
-
-  
-  catch(err){console.error(err)
-    console.log("lol")
-  }
-
+ 
   setShow20(false)
   setShow21(true)
 }
