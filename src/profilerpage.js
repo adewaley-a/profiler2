@@ -49,6 +49,19 @@ const Notes = () => {
           } catch (error) {
             console.error('Error fetching notes:', error);
           } 
+
+          if (newNote.trim() && uid) {
+            await addDoc(collection(db, 'users', uid, 'notes'), { text: newNote, uid: uid });
+            setNewNote('');
+      
+            const notesSnapshot = await getDocs(collection(db, 'users', uid, 'notes'));
+            const notesList = notesSnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setNotes(notesList);
+            setShow(false);
+          }
       }
     });
 
