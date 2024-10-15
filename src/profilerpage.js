@@ -934,17 +934,16 @@ const Next=async()=>{
   const [show21, setShow21] = useState(false)
 
 const Edit=async()=>{
- 
   setShow20(false)
   setShow21(true)
 }
-
 const [see20, setSee20] = useState(true)
 const hideEdit=async()=>{
  
   setSee20(false)
-
 }
+
+const user = auth.currentUser
 
   return (
     <div  className='bg'>
@@ -1402,7 +1401,13 @@ const hideEdit=async()=>{
 
               
      {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); hideEdit(); }}>Next</button></div>  :null}   
-     {see20?  <button className='backbtn' onClick={Edit}>Edit</button> :null}  
+ 
+     {user && see20 ? (
+        <button className='backbtn' onClick={Edit}>
+          Edit
+        </button>
+      ) : null}
+
     
     </div>
     
