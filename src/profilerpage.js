@@ -1,13 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc, query, where, onSnapshot } from 'firebase/firestore';
 import { db, auth } from './firebase';
 import Profilerpage1 from './profilerpage1';
 import Display from './display';
 import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
-import { signOut, getAuth } from 'firebase/auth';
+import { signOut, getAuth, onAuthStateChanged} from 'firebase/auth';
 import { useParams } from 'react-router-dom';
+
 
 const Notes = () => {
 
@@ -18,28 +19,32 @@ const Notes = () => {
   //page 0 start
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // Fetch notes from Firestore
   useEffect(() => {
-    const fetchNotes = async () => {
-      const user = auth.currentUser;
-
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userUid = user.uid; 
-        const notesCollection = collection(db, 'users', userUid, 'notes'); 
-        const notesSnapshot = await getDocs(notesCollection);
-        
-        const notesList = notesSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setNotes(notesList); 
+        const userUid = user.uid;
+        const notesCollection = collection(db, 'users', userUid, 'notes');
+  try {
+          const notesSnapshot = await getDocs(notesCollection);
+          const notesList = notesSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setNotes(notesList);
+        } catch (error) {
+          console.error('Error fetching notes:', error);
+        } 
       } else {
         console.log("No user is signed in");
+        setNotes([]); 
       }
-    };
-   fetchNotes();
-  }, []);
+    });
+    return () => unsubscribeAuth();
+  }, []); 
+  
 
   const [show, setShow] = useState(true)
 
@@ -75,24 +80,26 @@ const Notes = () => {
  
    // Fetch notes from Firestore
    useEffect(() => {
-    const fetchNotes = async () => {
-      const user = auth.currentUser;
-
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userUid = user.uid; 
-        const notesCollection = collection(db, 'users', userUid, 'notes1'); 
-        const notesSnapshot = await getDocs(notesCollection);
-        
-        const notesList = notesSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setNotes1(notesList); 
+        const userUid = user.uid;
+        const notesCollection = collection(db, 'users', userUid, 'notes1');
+  try {
+          const notesSnapshot = await getDocs(notesCollection);
+          const notesList = notesSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setNotes1(notesList);
+        } catch (error) {
+          console.error('Error fetching notes:', error);
+        } 
       } else {
         console.log("No user is signed in");
+        setNotes1([]); 
       }
-    };
-   fetchNotes();
+    });
+    return () => unsubscribeAuth();
   }, []);
 
   const [show1, setShow1] = useState(true)
@@ -129,24 +136,26 @@ const Notes = () => {
   
     // Fetch notes from Firestore
     useEffect(() => {
-      const fetchNotes = async () => {
-        const user = auth.currentUser;
-  
+      const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const userUid = user.uid; 
-          const notesCollection = collection(db, 'users', userUid, 'notes2'); 
-          const notesSnapshot = await getDocs(notesCollection);
-          
-          const notesList = notesSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }));
-          setNotes2(notesList); 
+          const userUid = user.uid;
+          const notesCollection = collection(db, 'users', userUid, 'notes2');
+    try {
+            const notesSnapshot = await getDocs(notesCollection);
+            const notesList = notesSnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setNotes2(notesList);
+          } catch (error) {
+            console.error('Error fetching notes:', error);
+          } 
         } else {
           console.log("No user is signed in");
+          setNotes2([]); 
         }
-      };
-     fetchNotes();
+      });
+      return () => unsubscribeAuth();
     }, []);
   
     const [show2, setShow2] = useState(true)
@@ -183,24 +192,26 @@ const Notes = () => {
    
      // Fetch notes from Firestore
      useEffect(() => {
-      const fetchNotes = async () => {
-        const user = auth.currentUser;
-  
+      const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const userUid = user.uid; 
-          const notesCollection = collection(db, 'users', userUid, 'notes3'); 
-          const notesSnapshot = await getDocs(notesCollection);
-          
-          const notesList = notesSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }));
-          setNotes3(notesList); 
+          const userUid = user.uid;
+          const notesCollection = collection(db, 'users', userUid, 'notes3');
+    try {
+            const notesSnapshot = await getDocs(notesCollection);
+            const notesList = notesSnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setNotes3(notesList);
+          } catch (error) {
+            console.error('Error fetching notes:', error);
+          } 
         } else {
           console.log("No user is signed in");
+          setNotes3([]); 
         }
-      };
-     fetchNotes();
+      });
+      return () => unsubscribeAuth();
     }, []);
   
     const [show3, setShow3] = useState(true)
@@ -237,24 +248,26 @@ const Notes = () => {
     
       // Fetch notes from Firestore
       useEffect(() => {
-        const fetchNotes = async () => {
-          const user = auth.currentUser;
-    
+        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid; 
-            const notesCollection = collection(db, 'users', userUid, 'notes4'); 
-            const notesSnapshot = await getDocs(notesCollection);
-            
-            const notesList = notesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data()
-            }));
-            setNotes4(notesList); 
+            const userUid = user.uid;
+            const notesCollection = collection(db, 'users', userUid, 'notes4');
+      try {
+              const notesSnapshot = await getDocs(notesCollection);
+              const notesList = notesSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+              }));
+              setNotes4(notesList);
+            } catch (error) {
+              console.error('Error fetching notes:', error);
+            } 
           } else {
             console.log("No user is signed in");
+            setNotes4([]); 
           }
-        };
-       fetchNotes();
+        });
+        return () => unsubscribeAuth();
       }, []);
     
       const [show4, setShow4] = useState(true)
@@ -291,24 +304,26 @@ const Notes = () => {
      
        // Fetch notes from Firestore
        useEffect(() => {
-        const fetchNotes = async () => {
-          const user = auth.currentUser;
-    
+        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid; 
-            const notesCollection = collection(db, 'users', userUid, 'notes5'); 
-            const notesSnapshot = await getDocs(notesCollection);
-            
-            const notesList = notesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data()
-            }));
-            setNotes5(notesList); 
+            const userUid = user.uid;
+            const notesCollection = collection(db, 'users', userUid, 'notes5');
+      try {
+              const notesSnapshot = await getDocs(notesCollection);
+              const notesList = notesSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+              }));
+              setNotes5(notesList);
+            } catch (error) {
+              console.error('Error fetching notes:', error);
+            } 
           } else {
             console.log("No user is signed in");
+            setNotes5([]); 
           }
-        };
-       fetchNotes();
+        });
+        return () => unsubscribeAuth();
       }, []);
     
       const [show5, setShow5] = useState(true)
@@ -347,24 +362,26 @@ const Notes = () => {
      
        // Fetch notes from Firestore
        useEffect(() => {
-        const fetchNotes = async () => {
-          const user = auth.currentUser;
-    
+        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid; 
-            const notesCollection = collection(db, 'users', userUid, 'notes6'); 
-            const notesSnapshot = await getDocs(notesCollection);
-            
-            const notesList = notesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data()
-            }));
-            setNotes6(notesList); 
+            const userUid = user.uid;
+            const notesCollection = collection(db, 'users', userUid, 'notes6');
+      try {
+              const notesSnapshot = await getDocs(notesCollection);
+              const notesList = notesSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+              }));
+              setNotes6(notesList);
+            } catch (error) {
+              console.error('Error fetching notes:', error);
+            } 
           } else {
             console.log("No user is signed in");
+            setNotes6([]); 
           }
-        };
-       fetchNotes();
+        });
+        return () => unsubscribeAuth();
       }, []);
     
       const [show6, setShow6] = useState(true)
@@ -402,24 +419,26 @@ const Notes = () => {
       
         // Fetch notes from Firestore
         useEffect(() => {
-          const fetchNotes = async () => {
-            const user = auth.currentUser;
-      
+          const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid; 
-              const notesCollection = collection(db, 'users', userUid, 'notes7'); 
-              const notesSnapshot = await getDocs(notesCollection);
-              
-              const notesList = notesSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-              }));
-              setNotes7(notesList); 
+              const userUid = user.uid;
+              const notesCollection = collection(db, 'users', userUid, 'notes7');
+        try {
+                const notesSnapshot = await getDocs(notesCollection);
+                const notesList = notesSnapshot.docs.map(doc => ({
+                  id: doc.id,
+                  ...doc.data(),
+                }));
+                setNotes7(notesList);
+              } catch (error) {
+                console.error('Error fetching notes:', error);
+              } 
             } else {
               console.log("No user is signed in");
+              setNotes7([]); 
             }
-          };
-         fetchNotes();
+          });
+          return () => unsubscribeAuth();
         }, []);
       
         const [show7, setShow7] = useState(true)
@@ -456,24 +475,26 @@ const Notes = () => {
        
          // Fetch notes from Firestore
          useEffect(() => {
-          const fetchNotes = async () => {
-            const user = auth.currentUser;
-      
+          const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid; 
-              const notesCollection = collection(db, 'users', userUid, 'notes8'); 
-              const notesSnapshot = await getDocs(notesCollection);
-              
-              const notesList = notesSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-              }));
-              setNotes8(notesList); 
+              const userUid = user.uid;
+              const notesCollection = collection(db, 'users', userUid, 'notes8');
+        try {
+                const notesSnapshot = await getDocs(notesCollection);
+                const notesList = notesSnapshot.docs.map(doc => ({
+                  id: doc.id,
+                  ...doc.data(),
+                }));
+                setNotes8(notesList);
+              } catch (error) {
+                console.error('Error fetching notes:', error);
+              } 
             } else {
               console.log("No user is signed in");
+              setNotes8([]); 
             }
-          };
-         fetchNotes();
+          });
+          return () => unsubscribeAuth();
         }, []);
       
         const [show8, setShow8] = useState(true)
@@ -511,24 +532,26 @@ const Notes = () => {
        
          // Fetch notes from Firestore
          useEffect(() => {
-          const fetchNotes = async () => {
-            const user = auth.currentUser;
-      
+          const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid; 
-              const notesCollection = collection(db, 'users', userUid, 'notes9'); 
-              const notesSnapshot = await getDocs(notesCollection);
-              
-              const notesList = notesSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-              }));
-              setNotes9(notesList); 
+              const userUid = user.uid;
+              const notesCollection = collection(db, 'users', userUid, 'notes9');
+        try {
+                const notesSnapshot = await getDocs(notesCollection);
+                const notesList = notesSnapshot.docs.map(doc => ({
+                  id: doc.id,
+                  ...doc.data(),
+                }));
+                setNotes9(notesList);
+              } catch (error) {
+                console.error('Error fetching notes:', error);
+              } 
             } else {
               console.log("No user is signed in");
+              setNotes9([]); 
             }
-          };
-         fetchNotes();
+          });
+          return () => unsubscribeAuth();
         }, []);
       
         const [show9, setShow9] = useState(true)
@@ -566,24 +589,26 @@ const Notes = () => {
         
           // Fetch notes from Firestore
           useEffect(() => {
-            const fetchNotes = async () => {
-              const user = auth.currentUser;
-        
+            const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid; 
-                const notesCollection = collection(db, 'users', userUid, 'notes10'); 
-                const notesSnapshot = await getDocs(notesCollection);
-                
-                const notesList = notesSnapshot.docs.map(doc => ({
-                  id: doc.id,
-                  ...doc.data()
-                }));
-                setNotes10(notesList); 
+                const userUid = user.uid;
+                const notesCollection = collection(db, 'users', userUid, 'notes10');
+          try {
+                  const notesSnapshot = await getDocs(notesCollection);
+                  const notesList = notesSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                  }));
+                  setNotes10(notesList);
+                } catch (error) {
+                  console.error('Error fetching notes:', error);
+                } 
               } else {
                 console.log("No user is signed in");
+                setNotes10([]); 
               }
-            };
-           fetchNotes();
+            });
+            return () => unsubscribeAuth();
           }, []);
         
           const [show10, setShow10] = useState(true)
@@ -621,24 +646,26 @@ const Notes = () => {
          
            // Fetch notes from Firestore
            useEffect(() => {
-            const fetchNotes = async () => {
-              const user = auth.currentUser;
-        
+            const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid; 
-                const notesCollection = collection(db, 'users', userUid, 'notes11'); 
-                const notesSnapshot = await getDocs(notesCollection);
-                
-                const notesList = notesSnapshot.docs.map(doc => ({
-                  id: doc.id,
-                  ...doc.data()
-                }));
-                setNotes11(notesList); 
+                const userUid = user.uid;
+                const notesCollection = collection(db, 'users', userUid, 'notes11');
+          try {
+                  const notesSnapshot = await getDocs(notesCollection);
+                  const notesList = notesSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                  }));
+                  setNotes11(notesList);
+                } catch (error) {
+                  console.error('Error fetching notes:', error);
+                } 
               } else {
                 console.log("No user is signed in");
+                setNotes11([]); 
               }
-            };
-           fetchNotes();
+            });
+            return () => unsubscribeAuth();
           }, []);
         
           const [show11, setShow11] = useState(true)
@@ -675,24 +702,26 @@ const Notes = () => {
           
             // Fetch notes from Firestore
             useEffect(() => {
-              const fetchNotes = async () => {
-                const user = auth.currentUser;
-          
+              const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
                 if (user) {
-                  const userUid = user.uid; 
-                  const notesCollection = collection(db, 'users', userUid, 'notes12'); 
-                  const notesSnapshot = await getDocs(notesCollection);
-                  
-                  const notesList = notesSnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                  }));
-                  setNotes12(notesList); 
+                  const userUid = user.uid;
+                  const notesCollection = collection(db, 'users', userUid, 'notes12');
+            try {
+                    const notesSnapshot = await getDocs(notesCollection);
+                    const notesList = notesSnapshot.docs.map(doc => ({
+                      id: doc.id,
+                      ...doc.data(),
+                    }));
+                    setNotes12(notesList);
+                  } catch (error) {
+                    console.error('Error fetching notes:', error);
+                  } 
                 } else {
                   console.log("No user is signed in");
+                  setNotes12([]); 
                 }
-              };
-             fetchNotes();
+              });
+              return () => unsubscribeAuth();
             }, []);
           
             const [show12, setShow12] = useState(true)
@@ -730,24 +759,26 @@ const Notes = () => {
          
            // Fetch notes from Firestore
            useEffect(() => {
-            const fetchNotes = async () => {
-              const user = auth.currentUser;
-        
+            const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid; 
-                const notesCollection = collection(db, 'users', userUid, 'notes13'); 
-                const notesSnapshot = await getDocs(notesCollection);
-                
-                const notesList = notesSnapshot.docs.map(doc => ({
-                  id: doc.id,
-                  ...doc.data()
-                }));
-                setNotes13(notesList); 
+                const userUid = user.uid;
+                const notesCollection = collection(db, 'users', userUid, 'notes13');
+          try {
+                  const notesSnapshot = await getDocs(notesCollection);
+                  const notesList = notesSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                  }));
+                  setNotes13(notesList);
+                } catch (error) {
+                  console.error('Error fetching notes:', error);
+                } 
               } else {
                 console.log("No user is signed in");
+                setNotes13([]); 
               }
-            };
-           fetchNotes();
+            });
+            return () => unsubscribeAuth();
           }, []);
         
           const [show13, setShow13] = useState(true)
@@ -785,24 +816,26 @@ const [newNote14, setNewNote14] = useState('');
 
 // Fetch notes from Firestore
 useEffect(() => {
-  const fetchNotes = async () => {
-    const user = auth.currentUser;
-
+  const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userUid = user.uid; 
-      const notesCollection = collection(db, 'users', userUid, 'notes14'); 
-      const notesSnapshot = await getDocs(notesCollection);
-      
-      const notesList = notesSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setNotes14(notesList); 
+      const userUid = user.uid;
+      const notesCollection = collection(db, 'users', userUid, 'notes14');
+try {
+        const notesSnapshot = await getDocs(notesCollection);
+        const notesList = notesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNotes14(notesList);
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      } 
     } else {
       console.log("No user is signed in");
+      setNotes14([]); 
     }
-  };
- fetchNotes();
+  });
+  return () => unsubscribeAuth();
 }, []);
 
 const [show14, setShow14] = useState(true)
@@ -840,24 +873,26 @@ const [newNote15, setNewNote15] = useState('');
 
 // Fetch notes from Firestore
 useEffect(() => {
-  const fetchNotes = async () => {
-    const user = auth.currentUser;
-
+  const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userUid = user.uid; 
-      const notesCollection = collection(db, 'users', userUid, 'notes15'); 
-      const notesSnapshot = await getDocs(notesCollection);
-      
-      const notesList = notesSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setNotes15(notesList); 
+      const userUid = user.uid;
+      const notesCollection = collection(db, 'users', userUid, 'notes15');
+try {
+        const notesSnapshot = await getDocs(notesCollection);
+        const notesList = notesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNotes15(notesList);
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      } 
     } else {
       console.log("No user is signed in");
+      setNotes15([]); 
     }
-  };
- fetchNotes();
+  });
+  return () => unsubscribeAuth();
 }, []);
 
 const [show15, setShow15] = useState(true)
@@ -908,7 +943,7 @@ const [see20, setSee20] = useState(true)
 const hideEdit=async()=>{
  
   setSee20(false)
-  alert("you're logged out")
+
 }
 
   return (
