@@ -6,14 +6,39 @@ import Profilerpage1 from './profilerpage1';
 import Display from './display';
 import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
-import { signOut, getAuth, onAuthStateChanged} from 'firebase/auth';
+import { signOut, getAuth, onAuthStateChanged, signInAnonymously} from 'firebase/auth';
 import { useParams } from 'react-router-dom';
+import firebase from 'firebase/app';
 
 
 const Notes = () => {
 
   const { uid } = useParams()
-  
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in (either anonymously or with credentials)
+        setUser(user);
+      } else {
+        // If no user is signed in, sign them in anonymously
+        auth.signInAnonymously()
+          .then((userCredential) => {
+            setUser(userCredential.user);
+          })
+          .catch((error) => {
+            console.error("Error signing in anonymously", error);
+            setError(error.message);
+          });
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup the observer on unmount
+  }, []);
+
 
 
   //page 0 start

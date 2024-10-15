@@ -1,5 +1,5 @@
 import {auth, googleProvider} from "./firebase"
-import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth"
 import useAuthState from "react-firebase-hooks/auth"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
