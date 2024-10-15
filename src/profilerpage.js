@@ -19,7 +19,21 @@ const Notes = () => {
   //page 0 start
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  useEffect(() => {
+    // Set up a listener for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true); // User is authenticated
+      } else {
+        setIsAuthenticated(false); // User is not authenticated
+      }
+    });
+
+    // Cleanup the listener on unmount
+    return () => unsubscribe();
+  }, []);
 
   // Fetch notes from Firestore
   useEffect(() => {
@@ -943,7 +957,7 @@ const hideEdit=async()=>{
   setSee20(false)
 }
 
-const user = auth.currentUser
+
 
   return (
     <div  className='bg'>
@@ -1402,7 +1416,7 @@ const user = auth.currentUser
               
      {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); hideEdit(); }}>Next</button></div>  :null}   
  
-     {user && see20 ? (
+     {isAuthenticated && see20 ? (
         <button className='backbtn' onClick={Edit}>
           Edit
         </button>
