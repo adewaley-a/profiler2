@@ -6,7 +6,7 @@ import Profilerpage1 from './profilerpage1';
 import Display from './display';
 import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
-import { signOut } from 'firebase/auth';
+import { signOut, getAuth } from 'firebase/auth';
 import { useParams } from 'react-router-dom';
 
 const Notes = () => {
@@ -63,7 +63,7 @@ const Notes = () => {
   const handleDeleteNote = async (noteId) => {
     if (uid) {
       await deleteDoc(doc(db, 'users', uid, 'notes', noteId));
-      setNotes(notes.filter(note => note.id !== noteId)); // Update state to remove the note
+      setNotes(notes.filter(note => note.id !== noteId)); 
     }
     setShow(true)
   };
@@ -803,7 +803,17 @@ const handleDeleteNote15 = async (id) => {
 
 const Next=async()=>{
        
- 
+  signOut(auth)
+  .then(() => {
+    // Sign-out successful.
+    console.log('User signed out successfully');
+    // Optionally, redirect the user or show a message
+  })
+  .catch((error) => {
+    // An error happened during sign out
+    console.error('Error during sign out:', error);
+  });
+
   setShow20(false)
   setShow21(true)
 }
