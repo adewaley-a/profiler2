@@ -7,6 +7,7 @@ import { Autoplay } from 'swiper/modules';
 import bot from './profilerbot.png' 
 import copy from './copyiconw.png' 
 import { Link } from 'react-router-dom';
+import { signOut, getAuth } from 'firebase/auth';
 
 
 function Display(props){

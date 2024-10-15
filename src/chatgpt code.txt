@@ -73,3 +73,15 @@ export default Notes;
 
 i'vs been unable to share the unique link of my firebase powered profile page with others because it always says 'page not found'
 do i need to do firebase hosting after enabling firestore
+
+sign out code
+ signOut(auth)
+  .then(() => {
+    // Sign-out successful.
+    console.log('User signed out successfully');
+    // Optionally, redirect the user or show a message
+  })
+  .catch((error) => {
+    // An error happened during sign out
+    console.error('Error during sign out:', error);
+  });
