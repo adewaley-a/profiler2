@@ -1,5 +1,5 @@
 import {auth, googleProvider} from "./firebase"
-import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth"
+import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, onAuthStateChanged } from "firebase/auth"
 import useAuthState from "react-firebase-hooks/auth"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -7,8 +7,32 @@ import { useEffect, useState } from "react"
 function ProfilerLogin(){
     const [email, setEmail]= useState("")
     const [password, setPassword] = useState("")
-
     const navigate = useNavigate()
+    const [user, setUser]= useState(null)
+
+
+    useEffect(() => {
+        // Check for auth state changes
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setUser(user);
+          } else {
+            // If no user is signed in, sign in anonymously
+            signInAnonymously(auth)
+              .then((userCredential) => {
+                // Signed in successfully
+                setUser(userCredential.user);
+                console.log("anon ti wole")
+              })
+              .catch((error) => {
+                console.error('Anonymous sign-in failed:', error);
+              });
+          }
+        });
+    
+        return () => unsubscribe(); // Clean up the subscription
+      }, []);
+
     const signIn=async()=>{
        
         try
