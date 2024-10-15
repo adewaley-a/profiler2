@@ -22,7 +22,7 @@ const Notes = () => {
  
   useEffect(() => {
     // Check for auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async(user) => {
       if (user) {
         setUser(user);
       } else {
@@ -36,6 +36,19 @@ const Notes = () => {
           .catch((error) => {
             console.error('Anonymous sign-in failed:', error);
           });
+
+          const userUid = user.uid;
+          const notesCollection = collection(db, 'users', userUid, 'notes');
+    try {
+            const notesSnapshot = await getDocs(notesCollection);
+            const notesList = notesSnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setNotes(notesList);
+          } catch (error) {
+            console.error('Error fetching notes:', error);
+          } 
       }
     });
 
