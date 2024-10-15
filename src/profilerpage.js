@@ -891,16 +891,6 @@ const handleDeleteNote15 = async (noteId) => {
 
 const Next=async()=>{
 
- signOut(auth)
-  .then(() => {
-    // Sign-out successful.
-    console.log('User signed out successfully');
-    // Optionally, redirect the user or show a message
-  })
-  .catch((error) => {
-    // An error happened during sign out
-    console.error('Error during sign out:', error);
-  });
   setShow20(true)
   setShow21(false)
 }
