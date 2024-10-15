@@ -22,54 +22,46 @@ const Notes = () => {
   // Fetch notes from Firestore
   useEffect(() => {
     const fetchNotes = async () => {
-      const user = auth.currentUser; // Get the currently signed-in user
+      const user = auth.currentUser;
 
       if (user) {
-        const userUid = user.uid; // Get the user's unique ID
-
-        // Fetch notes for the specific user from their own notes collection
+        const userUid = user.uid; 
         const notesCollection = collection(db, 'users', userUid, 'notes'); 
         const notesSnapshot = await getDocs(notesCollection);
         
-        // Map the documents to an array and set the state
         const notesList = notesSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
-        setNotes(notesList); // Set notes to display them
+        setNotes(notesList); 
       } else {
         console.log("No user is signed in");
       }
     };
-
-    fetchNotes();
+   fetchNotes();
   }, []);
 
   const [show, setShow] = useState(true)
-  // Add a new note to Firestore
 
+  // Add a new note to Firestore
   const handleAddNote = async () => {
     if (newNote.trim() && uid) {
-      // Add the note to the specific user's notes collection
       await addDoc(collection(db, 'users', uid, 'notes'), { text: newNote, uid: uid });
       setNewNote('');
 
-      // Refresh notes after adding the new one
       const notesSnapshot = await getDocs(collection(db, 'users', uid, 'notes'));
       const notesList = notesSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setNotes(notesList); // Update the notes with the newly added note
+      setNotes(notesList);
       setShow(false);
     }
   };
-
-  // Delete a note from Firestore
+    
 
   const handleDeleteNote = async (noteId) => {
     if (uid) {
-      // Delete the note from the specific user's notes collection
       await deleteDoc(doc(db, 'users', uid, 'notes', noteId));
       setNotes(notes.filter(note => note.id !== noteId)); // Update state to remove the note
     }

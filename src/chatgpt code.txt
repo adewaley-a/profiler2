@@ -68,3 +68,8 @@ const Notes = () => {
 };
 
 export default Notes;
+
+
+
+i'vs been unable to share the unique link of my firebase powered profile page with others because it always says 'page not found'
+do i need to do firebase hosting after enabling firestore
