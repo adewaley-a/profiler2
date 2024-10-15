@@ -10,7 +10,6 @@ import { signOut, getAuth, onAuthStateChanged, signInAnonymously} from 'firebase
 import { useParams } from 'react-router-dom';
 
 
-
 const Notes = () => {
 
   const { uid } = useParams()
@@ -18,9 +17,30 @@ const Notes = () => {
   //page 0 start
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
-  
+  const [user, setUser]= useState(null)
 
  
+  useEffect(() => {
+    // Check for auth state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        // If no user is signed in, sign in anonymously
+        signInAnonymously(auth)
+          .then((userCredential) => {
+            // Signed in successfully
+            setUser(userCredential.user);
+            console.log("anon ti wole")
+          })
+          .catch((error) => {
+            console.error('Anonymous sign-in failed:', error);
+          });
+      }
+    });
+
+    return () => unsubscribe(); // Clean up the subscription
+  }, []);
 
   // Fetch notes from Firestore
   useEffect(() => {
