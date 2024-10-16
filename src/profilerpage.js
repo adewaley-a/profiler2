@@ -23,9 +23,6 @@ const Notes = () => {
   useEffect(() => {
     // Check for auth state changes
     const unsubscribe = onAuthStateChanged(auth, async(user) => {
-      if (user) {
-        setUser(user);
-      } else {
         // If no user is signed in, sign in anonymously
         signInAnonymously(auth)
           .then((userCredential) => {
@@ -62,7 +59,7 @@ const Notes = () => {
             setNotes(notesList);
             setShow(false);
           }
-      }
+      
     });
 
     return () => unsubscribe(); // Clean up the subscription
