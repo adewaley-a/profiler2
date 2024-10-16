@@ -6,12 +6,23 @@ import Profilerpage1 from './profilerpage1';
 import Display from './display';
 import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
-import { signOut, getAuth, onAuthStateChanged, signInAnonymously} from 'firebase/auth';
+import { signOut, getAuth, onAuthStateChanged, setPersistence, browserSessionPersistence, browserLocalPersistence, signInAnonymously} from 'firebase/auth';
 import { useParams } from 'react-router-dom';
 
 
 const Notes = () => {
 
+  setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    // Once the persistence is set, you can sign in the user
+    return signInAnonymously(auth);
+    console.log("anon ti wole")
+  })
+  .catch((error) => {
+    // Handle error
+    console.error('Error setting persistence:', error);
+  });
+  
   const { uid } = useParams()
 
   //page 0 start
@@ -20,57 +31,13 @@ const Notes = () => {
   const [user, setUser]= useState(null)
 
  
-  useEffect(() => {
-    // Check for auth state changes
-    const unsubscribe = onAuthStateChanged(auth, async(user) => {
-        // If no user is signed in, sign in anonymously
-        signInAnonymously(auth)
-          .then((userCredential) => {
-            // Signed in successfully
-            setUser(userCredential.user);
-            console.log("anon ti wole")
-          })
-          .catch((error) => {
-            console.error('Anonymous sign-in failed:', error);
-          });
-
-          const userUid = user.uid;
-          const notesCollection = collection(db, 'users', userUid, 'notes');
-    try {
-            const notesSnapshot = await getDocs(notesCollection);
-            const notesList = notesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data(),
-            }));
-            setNotes(notesList);
-          } catch (error) {
-            console.error('Error fetching notes:', error);
-          } 
-
-          if (newNote.trim() && uid) {
-            await addDoc(collection(db, 'users', uid, 'notes'), { text: newNote, uid: uid });
-            setNewNote('');
-      
-            const notesSnapshot = await getDocs(collection(db, 'users', uid, 'notes'));
-            const notesList = notesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data(),
-            }));
-            setNotes(notesList);
-            setShow(false);
-          }
-      
-    });
-
-    return () => unsubscribe(); // Clean up the subscription
-  }, []);
-
+  
   // Fetch notes from Firestore
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userUid = user.uid;
-        const notesCollection = collection(db, 'users', userUid, 'notes');
+        
+        const notesCollection = collection(db, 'users', uid, 'notes');
   try {
           const notesSnapshot = await getDocs(notesCollection);
           const notesList = notesSnapshot.docs.map(doc => ({
@@ -78,6 +45,7 @@ const Notes = () => {
             ...doc.data(),
           }));
           setNotes(notesList);
+          console.log(uid)
         } catch (error) {
           console.error('Error fetching notes:', error);
         } 
