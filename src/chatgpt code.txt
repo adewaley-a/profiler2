@@ -85,3 +85,42 @@ sign out code
     // An error happened during sign out
     console.error('Error during sign out:', error);
   });
+
+
+
+   {see20 ? (
+        <button className='backbtn' onClick={Edit}>
+          Edit
+        </button>
+      ) : null}
+
+
+code for url shortener
+
+      import { getDynamicLink, createDynamicLink } from 'firebase/dynamic-links';
+
+const createShortProfileLink = async (uid) => {
+  const longLink = `https://yourapp.web.app/users/${uid}`; // Long profile link
+
+  const dynamicLink = await createDynamicLink({
+    dynamicLinkInfo: {
+      domainUriPrefix: "https://yourapp.page.link", // The domain you set up in Firebase
+      link: longLink,  // The original long URL
+      androidInfo: {
+        androidPackageName: "com.yourapp.android", // Your Android app package name
+      },
+      iosInfo: {
+        iosBundleId: "com.yourapp.ios",  // Your iOS app bundle ID
+      },
+    },
+    suffix: {
+      option: 'SHORT' // Use 'SHORT' to create a shortened link
+    }
+  });
+
+  return dynamicLink.shortLink; // This will return the shortened URL
+};
+
+// Usage
+const shortLink = await createShortProfileLink(userUid);
+console.log("Shortened profile link:", shortLink);

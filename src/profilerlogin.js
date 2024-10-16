@@ -3,13 +3,15 @@ import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEma
 import useAuthState from "react-firebase-hooks/auth"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import React, { useContext } from 'react';
+import { VisibilityContext } from './VisibilityContext'; 
 
 function ProfilerLogin(){
     const [email, setEmail]= useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
     const [user, setUser]= useState(null)
-
+    const { toggleVisibility } = useContext(VisibilityContext); 
 
     useEffect(() => {
         // Check for auth state changes
@@ -47,6 +49,7 @@ function ProfilerLogin(){
         }
        
         catch(err){console.error(err)}
+        
     }
  
     const logIn=async()=>{
@@ -81,7 +84,7 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={signIn} >Sign up</button>
+            <button onClick={() => { signIn(); toggleVisibility(); }} >Sign up</button>
 
             <h3>GAP</h3>
 
@@ -95,7 +98,7 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={logIn} >Login</button>
+            <button onClick={() => { logIn(); toggleVisibility(); }} >Login</button>
         </div>
     )
 }

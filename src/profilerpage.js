@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useContext ,useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, deleteDoc, doc, query, where, onSnapshot } from 'firebase/firestore';
 import { db, auth } from './firebase';
 import Profilerpage1 from './profilerpage1';
@@ -8,18 +8,20 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import './profilerpage.css'
 import { signOut, getAuth, onAuthStateChanged, setPersistence, browserSessionPersistence, browserLocalPersistence, signInAnonymously} from 'firebase/auth';
 import { useParams } from 'react-router-dom';
+import { VisibilityContext } from './VisibilityContext';
 
 
 const Notes = () => {
 
+  const { isComponentVisible } = useContext(VisibilityContext);
+
   setPersistence(auth, browserLocalPersistence)
   .then(() => {
-    // Once the persistence is set, you can sign in the user
+
     return signInAnonymously(auth);
     console.log("anon ti wole")
   })
   .catch((error) => {
-    // Handle error
     console.error('Error setting persistence:', error);
   });
   
@@ -29,15 +31,14 @@ const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
   const [user, setUser]= useState(null)
+  const [loading, setLoading] = useState(true);
 
- 
-  
   // Fetch notes from Firestore
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        
         const notesCollection = collection(db, 'users', uid, 'notes');
+        setLoading(true);
   try {
           const notesSnapshot = await getDocs(notesCollection);
           const notesList = notesSnapshot.docs.map(doc => ({
@@ -49,9 +50,13 @@ const Notes = () => {
         } catch (error) {
           console.error('Error fetching notes:', error);
         } 
+        finally {
+          setLoading(false); // Stop loading after fetching is done
+        }
       } else {
         console.log("No user is signed in");
         setNotes([]); 
+        setLoading(false)
       }
     });
     return () => unsubscribeAuth();
@@ -94,8 +99,7 @@ const Notes = () => {
    useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userUid = user.uid;
-        const notesCollection = collection(db, 'users', userUid, 'notes1');
+        const notesCollection = collection(db, 'users', uid, 'notes1');
   try {
           const notesSnapshot = await getDocs(notesCollection);
           const notesList = notesSnapshot.docs.map(doc => ({
@@ -150,8 +154,7 @@ const Notes = () => {
     useEffect(() => {
       const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const userUid = user.uid;
-          const notesCollection = collection(db, 'users', userUid, 'notes2');
+      const notesCollection = collection(db, 'users', uid, 'notes2');
     try {
             const notesSnapshot = await getDocs(notesCollection);
             const notesList = notesSnapshot.docs.map(doc => ({
@@ -206,8 +209,7 @@ const Notes = () => {
      useEffect(() => {
       const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const userUid = user.uid;
-          const notesCollection = collection(db, 'users', userUid, 'notes3');
+          const notesCollection = collection(db, 'users', uid, 'notes3');
     try {
             const notesSnapshot = await getDocs(notesCollection);
             const notesList = notesSnapshot.docs.map(doc => ({
@@ -262,8 +264,7 @@ const Notes = () => {
       useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid;
-            const notesCollection = collection(db, 'users', userUid, 'notes4');
+            const notesCollection = collection(db, 'users', uid, 'notes4');
       try {
               const notesSnapshot = await getDocs(notesCollection);
               const notesList = notesSnapshot.docs.map(doc => ({
@@ -318,8 +319,7 @@ const Notes = () => {
        useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid;
-            const notesCollection = collection(db, 'users', userUid, 'notes5');
+            const notesCollection = collection(db, 'users', uid, 'notes5');
       try {
               const notesSnapshot = await getDocs(notesCollection);
               const notesList = notesSnapshot.docs.map(doc => ({
@@ -376,8 +376,7 @@ const Notes = () => {
        useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const userUid = user.uid;
-            const notesCollection = collection(db, 'users', userUid, 'notes6');
+            const notesCollection = collection(db, 'users', uid, 'notes6');
       try {
               const notesSnapshot = await getDocs(notesCollection);
               const notesList = notesSnapshot.docs.map(doc => ({
@@ -433,8 +432,7 @@ const Notes = () => {
         useEffect(() => {
           const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid;
-              const notesCollection = collection(db, 'users', userUid, 'notes7');
+              const notesCollection = collection(db, 'users', uid, 'notes7');
         try {
                 const notesSnapshot = await getDocs(notesCollection);
                 const notesList = notesSnapshot.docs.map(doc => ({
@@ -489,8 +487,7 @@ const Notes = () => {
          useEffect(() => {
           const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid;
-              const notesCollection = collection(db, 'users', userUid, 'notes8');
+              const notesCollection = collection(db, 'users', uid, 'notes8');
         try {
                 const notesSnapshot = await getDocs(notesCollection);
                 const notesList = notesSnapshot.docs.map(doc => ({
@@ -546,8 +543,7 @@ const Notes = () => {
          useEffect(() => {
           const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-              const userUid = user.uid;
-              const notesCollection = collection(db, 'users', userUid, 'notes9');
+              const notesCollection = collection(db, 'users', uid, 'notes9');
         try {
                 const notesSnapshot = await getDocs(notesCollection);
                 const notesList = notesSnapshot.docs.map(doc => ({
@@ -603,8 +599,7 @@ const Notes = () => {
           useEffect(() => {
             const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid;
-                const notesCollection = collection(db, 'users', userUid, 'notes10');
+                const notesCollection = collection(db, 'users', uid, 'notes10');
           try {
                   const notesSnapshot = await getDocs(notesCollection);
                   const notesList = notesSnapshot.docs.map(doc => ({
@@ -660,8 +655,7 @@ const Notes = () => {
            useEffect(() => {
             const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid;
-                const notesCollection = collection(db, 'users', userUid, 'notes11');
+                const notesCollection = collection(db, 'users', uid, 'notes11');
           try {
                   const notesSnapshot = await getDocs(notesCollection);
                   const notesList = notesSnapshot.docs.map(doc => ({
@@ -716,8 +710,7 @@ const Notes = () => {
             useEffect(() => {
               const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
                 if (user) {
-                  const userUid = user.uid;
-                  const notesCollection = collection(db, 'users', userUid, 'notes12');
+                  const notesCollection = collection(db, 'users', uid, 'notes12');
             try {
                     const notesSnapshot = await getDocs(notesCollection);
                     const notesList = notesSnapshot.docs.map(doc => ({
@@ -773,8 +766,7 @@ const Notes = () => {
            useEffect(() => {
             const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
               if (user) {
-                const userUid = user.uid;
-                const notesCollection = collection(db, 'users', userUid, 'notes13');
+                const notesCollection = collection(db, 'users', uid, 'notes13');
           try {
                   const notesSnapshot = await getDocs(notesCollection);
                   const notesList = notesSnapshot.docs.map(doc => ({
@@ -830,8 +822,7 @@ const [newNote14, setNewNote14] = useState('');
 useEffect(() => {
   const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userUid = user.uid;
-      const notesCollection = collection(db, 'users', userUid, 'notes14');
+      const notesCollection = collection(db, 'users', uid, 'notes14');
 try {
         const notesSnapshot = await getDocs(notesCollection);
         const notesList = notesSnapshot.docs.map(doc => ({
@@ -887,8 +878,7 @@ const [newNote15, setNewNote15] = useState('');
 useEffect(() => {
   const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userUid = user.uid;
-      const notesCollection = collection(db, 'users', userUid, 'notes15');
+      const notesCollection = collection(db, 'users', uid, 'notes15');
 try {
         const notesSnapshot = await getDocs(notesCollection);
         const notesList = notesSnapshot.docs.map(doc => ({
@@ -1414,12 +1404,11 @@ const hideEdit=async()=>{
               
      {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); hideEdit(); }}>Next</button></div>  :null}   
  
-     {see20 ? (
-        <button className='backbtn' onClick={Edit}>
+    
+     {isComponentVisible && <button className='backbtn' onClick={Edit}>
           Edit
-        </button>
-      ) : null}
-
+        </button>}
+      
     
     </div>
     

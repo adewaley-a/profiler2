@@ -120,7 +120,9 @@ function Display(props){
     
     </Swiper>
 
-           <div     style={{ pointerEvents: isClickable ? 'auto' : 'none' }}  onClick={groupc}  className='gc'>{props.message6}</div>
+           <div     style={{ pointerEvents: isClickable ? 'auto' : 'none' }}  onClick={groupc}  className='gc'>{props.message6}
+           
+           </div>
            <a className='gclink' ref={divRef}  > {props.message7} </a> 
 
             <h2 className='title'>Socials  </h2>
