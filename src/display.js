@@ -103,7 +103,7 @@ function Display(props){
 
 
         <img src={bot} className='bot' />
-           <h1 className='name'> {props.message} </h1>
+        <div  className='name'>{props.loadings ? <p>Loading data...</p> :  <h1> {props.message} </h1>  }</div>
            <h2 className='title'>About me ...  </h2>
            <div id='about' className='birthinput'>{props.message1}</div>
            <h2 className='title'>Birthday  </h2>
@@ -120,21 +120,22 @@ function Display(props){
     
     </Swiper>
 
-           <div     style={{ pointerEvents: isClickable ? 'auto' : 'none' }}  onClick={groupc}  className='gc'>{props.message6}
+           <div     style={{ pointerEvents: isClickable ? 'auto' : 'none' }}  onClick={groupc}  className='gc'>{props.empty6s ? <p>Empty link</p> :<div>{props.message6}  </div>}
            
            </div>
            <a className='gclink' ref={divRef}  > {props.message7} </a> 
+           <a className='gclink' ref={divRef1}  > {props.message9} </a>  <a className='gclink' ref={divRef2}  > {props.message11} </a>
+                <a className='gclink' ref={divRef3}  > {props.message13} </a>  <a className='gclink' ref={divRef4}  > {props.message15} </a>
+
 
             <h2 className='title'>Socials  </h2>
             <div className='socialcover'>
-                <div className='socialbtn' onClick={groupc1}  >{props.message8}</div>  
-                <div className='socialbtn'  onClick={groupc2} > {props.message10}</div>
-                <div className='socialbtn' onClick={groupc3} > {props.message12}</div>
-                <div className='socialbtn' onClick={groupc4} >{props.message14}</div>
+          <div  className='socialbtn' onClick={groupc1}>  {props.empty8s ? <p  className='sociale'>Empty link</p> :   <div  >{props.message8}</div>  }   </div>
+          <div className='socialbtn'  onClick={groupc2}>   {props.empty10s ? <p  className='sociale'>Empty link</p> :    <div  > {props.message10}</div>   }   </div>
+          <div className='socialbtn' onClick={groupc3}>   {props.empty12s ? <p className='sociale'>Empty link</p> :    <div  > {props.message12}</div>   }   </div>
+          <div className='socialbtn' onClick={groupc4}>   {props.empty14s ? <p className='sociale'>Empty link</p> :    <div  >{props.message14}</div>   }   </div>
 
-                 <a className='gclink' ref={divRef1}  > {props.message9} </a>  <a className='gclink' ref={divRef2}  > {props.message11} </a>
-                <a className='gclink' ref={divRef3}  > {props.message13} </a>  <a className='gclink' ref={divRef4}  > {props.message15} </a>
-
+                 
             </div>
 
                 

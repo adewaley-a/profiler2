@@ -73,5 +73,9 @@ input{
   }
   .backbtn{
     position: absolute;
-    top: 0;
+    top: 42%;
+    color: rgb(255, 255, 255);
+    height: 8%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }

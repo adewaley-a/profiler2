@@ -32,6 +32,12 @@ const Notes = () => {
   const [newNote, setNewNote] = useState('');
   const [user, setUser]= useState(null)
   const [loading, setLoading] = useState(true);
+  const [empty6, setEmpty6] = useState(true);
+  const [empty8, setEmpty8] = useState(true);
+  const [empty10, setEmpty10] = useState(true);
+  const [empty12, setEmpty12] = useState(true);
+  const [empty14, setEmpty14] = useState(true);
+
 
   // Fetch notes from Firestore
   useEffect(() => {
@@ -387,9 +393,13 @@ const Notes = () => {
             } catch (error) {
               console.error('Error fetching notes:', error);
             } 
+            finally {
+              setEmpty6(false); // Stop loading after fetching is done
+            }
           } else {
             console.log("No user is signed in");
-            setNotes6([]); 
+            setNotes6([]);
+            setEmpty6(false) 
           }
         });
         return () => unsubscribeAuth();
@@ -443,9 +453,11 @@ const Notes = () => {
               } catch (error) {
                 console.error('Error fetching notes:', error);
               } 
+             
             } else {
               console.log("No user is signed in");
               setNotes7([]); 
+             
             }
           });
           return () => unsubscribeAuth();
@@ -498,9 +510,13 @@ const Notes = () => {
               } catch (error) {
                 console.error('Error fetching notes:', error);
               } 
+              finally {
+                setEmpty8(false); // Stop loading after fetching is done
+              }
             } else {
               console.log("No user is signed in");
               setNotes8([]); 
+              setEmpty8(false)
             }
           });
           return () => unsubscribeAuth();
@@ -610,9 +626,13 @@ const Notes = () => {
                 } catch (error) {
                   console.error('Error fetching notes:', error);
                 } 
+                finally {
+                  setEmpty10(false); // Stop loading after fetching is done
+                }
               } else {
                 console.log("No user is signed in");
                 setNotes10([]); 
+                setEmpty10(false)
               }
             });
             return () => unsubscribeAuth();
@@ -721,9 +741,13 @@ const Notes = () => {
                   } catch (error) {
                     console.error('Error fetching notes:', error);
                   } 
+                  finally {
+                    setEmpty12(false); // Stop loading after fetching is done
+                  }
                 } else {
                   console.log("No user is signed in");
                   setNotes12([]); 
+                  setEmpty12(false)
                 }
               });
               return () => unsubscribeAuth();
@@ -833,9 +857,13 @@ try {
       } catch (error) {
         console.error('Error fetching notes:', error);
       } 
+      finally {
+        setEmpty14(false); // Stop loading after fetching is done
+      }
     } else {
       console.log("No user is signed in");
       setNotes14([]); 
+      setEmpty14(false)
     }
   });
   return () => unsubscribeAuth();
@@ -950,7 +978,14 @@ const hideEdit=async()=>{
   return (
     <div  className='bg'>
     
-      {show20?<Display message = {notes.map(note => (
+      {show20?<Display
+      
+      loadings = {loading}
+      empty6s = {empty6}  empty8s = {empty8}
+      empty10s = {empty10}  empty12s = {empty12}
+      empty14s = {empty14}
+
+      message = {notes.map(note => (
           <div key={note.id}>
             {note.text}</div>
         ))}
@@ -1402,7 +1437,7 @@ const hideEdit=async()=>{
 </div>:null}
 
               
-     {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); hideEdit(); }}>Next</button></div>  :null}   
+     {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); }}>Next</button></div>  :null}   
  
     
      {isComponentVisible && <button className='backbtn' onClick={Edit}>

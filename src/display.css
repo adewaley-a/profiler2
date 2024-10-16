@@ -20,6 +20,11 @@ body{
     background: linear-gradient(to bottom right, rgba(0, 128, 0, 0.449), rgba(0, 0, 0, 0.406));
 }
 
+p{
+  line-height: 30px;
+  text-align: center;
+}
+
 .socialcover{
     display: grid;
     width: 34%;
@@ -59,7 +64,7 @@ body{
     margin-bottom: 0;
  }
  .name{
-   font-size: 140%;
+   font-size: 80%;
    font-family: "Russo One", sans-serif;
    --bg-size: 400%;
    --color-one:  rgb(29, 255, 29);
@@ -147,7 +152,9 @@ body{
 .gclink{
   display: none;
 }
-
+.sociale{
+  line-height: 8px;
+}
 
 @media (max-width: 950px) {
  
@@ -202,6 +209,9 @@ body{
     margin-bottom: 22px;
     font-size: 80%;
     color: #ffffff;
+}
+.name{
+  font-size: 65%;
 }
 }
 
@@ -268,7 +278,7 @@ body{
   margin-bottom: 0;
 }
 .name{
-  font-size:120% ;
+  font-size:60% ;
 }
 .birthinput{
   font-size:78% ;
@@ -339,7 +349,7 @@ body{
   margin-bottom: 0;
 }
 .name{
-  font-size:120% ;
+  font-size:55% ;
 }
 .birthinput{
   font-size:78% ;

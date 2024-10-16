@@ -84,7 +84,7 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={() => { signIn(); toggleVisibility(); }} >Sign up</button>
+            <button onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
 
             <h3>GAP</h3>
 
@@ -98,7 +98,7 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={() => { logIn(); toggleVisibility(); }} >Login</button>
+            <button onClick={() => {toggleVisibility(); logIn();  }} >Login</button>
         </div>
     )
 }
