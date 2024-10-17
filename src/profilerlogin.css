@@ -1,11 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+.logcover{
+    margin: auto;
+    margin-top: 20%;
+    width: 40%;
+    padding-left: 9.5%;
+}
+button{
+    font-family: "Russo One", sans-serif;
+    font-size: smaller;
+    font-weight: 100;
+}
 .sign{
-
+    background-image: linear-gradient(to right, rgb(19, 19, 19), green);
+    height: 30px;
 }
 
 .pword{
-
+    height: 30px;
+    margin-left: 5px;
 }
 
 .log{
+    height: 30px;
+}
+
+@media (max-width:600px){
+
+    .logcover{
+        margin: auto;
+        margin-top: 37%;
+        width: 40%;
+        padding-left: 9.5%;
+    }
+    .sign{
+        background-image: linear-gradient(to right, rgb(19, 19, 19), green);
+        margin-left: 5px;
+    }
+    
+    .pword{
+    
+    }
+    
+    .log{
+        margin-left: 5px;
+    }
+
+}
+
+@media (max-width:470px){
+
+    .logcover{
+        margin: auto;
+        margin-top: 37%;
+        width: 54%;
+        padding-left: 9.5%;
+    }
+    .sign{
+        background-image: linear-gradient(to right, rgb(19, 19, 19), green);
+        margin-left: 5px;
+    }
+    
+    .pword{
+    
+    }
+    
+    .log{
+        margin-left: 5px;
+    }
 
 }

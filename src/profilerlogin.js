@@ -74,7 +74,7 @@ function ProfilerLogin(){
    
 
     return(
-        <div>
+        <div className="logcover">
             <input 
             className="sign"
             type="email"
