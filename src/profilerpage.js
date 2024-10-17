@@ -1071,7 +1071,7 @@ const hideEdit=async()=>{
         
 
     <div className='unit'>
-      <h1>Display name</h1>
+      <h1 className='hp1'>Display name</h1>
       <div>
         <input
          maxlength="30"
@@ -1084,7 +1084,7 @@ const hideEdit=async()=>{
       </div>
       <div>
         {notes.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
           </div>
@@ -1094,7 +1094,7 @@ const hideEdit=async()=>{
 
       
     <div className='unit' >
-      <h1>About</h1>
+      <h1 className='hp1'>About</h1>
       <div>
         <textarea
           className='firstname'
@@ -1109,7 +1109,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes1.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote1(note.id)}>Delete</button>
           </div>
@@ -1118,7 +1118,7 @@ const hideEdit=async()=>{
     </div>
 
     <div className='unit'>
-      <h1>birthday</h1>
+      <h1 className='hp1'>birthday</h1>
       <div>
         <input
          maxlength="25"
@@ -1131,7 +1131,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes2.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote2(note.id)}>Delete</button>
           </div>
@@ -1140,7 +1140,7 @@ const hideEdit=async()=>{
     </div>
       
     <div className='unit'>
-      <h1>Interest in? 1</h1>
+      <h1 className='hp1'>Interest in? 1</h1>
       <div>
         <input
          maxlength="25"
@@ -1153,7 +1153,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes3.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote3(note.id)}>Delete</button>
           </div>
@@ -1163,7 +1163,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>Interest in? 2</h1>
+      <h1 className='hp1'>Interest in? 2</h1>
       <div>
         <input
          maxlength="25"
@@ -1176,7 +1176,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes4.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote4(note.id)}>Delete</button>
           </div>
@@ -1186,7 +1186,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>Interest in? 3</h1>
+      <h1 className='hp1'>Interest in? 3</h1>
       <div>
         <input
          maxlength="25"
@@ -1199,7 +1199,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes5.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote5(note.id)}>Delete</button>
           </div>
@@ -1209,7 +1209,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>Link title</h1>
+      <h1 className='hp1'>Link title</h1>
       <div>
         <input
          maxlength="20"
@@ -1222,7 +1222,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes6.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote6(note.id)}>Delete</button>
           </div>
@@ -1232,7 +1232,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>Paste link</h1>
+      <h1 className='hp1'>Paste link</h1>
       <div>
         <input
           type="text"
@@ -1244,7 +1244,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes7.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote7(note.id)}>Delete</button>
           </div>
@@ -1254,7 +1254,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>App name(e.g instagram) 1</h1>
+      <h1 className='hp1'>App name(e.g instagram) 1</h1>
       <div>
         <input
          maxlength="20"
@@ -1267,7 +1267,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes8.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote8(note.id)}>Delete</button>
           </div>
@@ -1277,7 +1277,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>link to account 1</h1>
+      <h1 className='hp1'>link to account 1</h1>
       <div>
         <input
           type="text"
@@ -1289,7 +1289,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes9.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote9(note.id)}>Delete</button>
           </div>
@@ -1299,7 +1299,7 @@ const hideEdit=async()=>{
   
 
     <div className='unit'>
-      <h1>App name(e.g twitter) 2</h1>
+      <h1 className='hp1'>App name(e.g twitter) 2</h1>
       <div>
         <input
          maxlength="20"
@@ -1312,7 +1312,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes10.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote10(note.id)}>Delete</button>
           </div>
@@ -1322,7 +1322,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>link to account 2</h1>
+      <h1 className='hp1'>link to account 2</h1>
       <div>
         <input
           type="text"
@@ -1334,7 +1334,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes11.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote11(note.id)}>Delete</button>
           </div>
@@ -1344,7 +1344,7 @@ const hideEdit=async()=>{
   
 
     <div className='unit'>
-      <h1>App name(e.g linkedin) 3</h1>
+      <h1 className='hp1'>App name(e.g linkedin) 3</h1>
       <div>
         <input
          maxlength="20"
@@ -1357,7 +1357,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes12.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote12(note.id)}>Delete</button>
           </div>
@@ -1367,7 +1367,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>link to account 3</h1>
+      <h1 className='hp1'>link to account 3</h1>
       <div>
         <input
           type="text"
@@ -1379,7 +1379,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes13.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote13(note.id)}>Delete</button>
           </div>
@@ -1388,7 +1388,7 @@ const hideEdit=async()=>{
     </div>
 
     <div className='unit'>
-      <h1>App name(e.g behance) </h1>
+      <h1 className='hp1'>App name(e.g behance) </h1>
       <div>
         <input
          maxlength="20"
@@ -1401,7 +1401,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes14.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote14(note.id)}>Delete</button>
           </div>
@@ -1411,7 +1411,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1>link to account 4</h1>
+      <h1 className='hp1'>link to account 4</h1>
       <div>
         <input
           type="text"
@@ -1423,7 +1423,7 @@ const hideEdit=async()=>{
       </div>
       <div className='output'>
         {notes15.map(note => (
-          <div key={note.id}>
+          <div className='notep' key={note.id}>
             {note.text}
             <button onClick={() => handleDeleteNote15(note.id)}>Delete</button>
           </div>

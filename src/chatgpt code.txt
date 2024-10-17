@@ -124,3 +124,5 @@ const createShortProfileLink = async (uid) => {
 // Usage
 const shortLink = await createShortProfileLink(userUid);
 console.log("Shortened profile link:", shortLink);
+
+how to create shorl urls in my react app with the link of the current page if it has a uid 

@@ -10,9 +10,13 @@ import { Link } from 'react-router-dom';
 import { signOut, getAuth } from 'firebase/auth';
 
 
+
 function Display(props){
 
     const [currentURL, setCurrentURL] = useState('');
+
+
+    
 
     const showCurrentURL = () => {
         setCurrentURL( "Check my profile -> "  + window.location.href);
