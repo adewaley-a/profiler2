@@ -5,6 +5,7 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import React, { useContext } from 'react';
 import { VisibilityContext } from './VisibilityContext'; 
+import './profilerlogin.css'
 
 function ProfilerLogin(){
     const [email, setEmail]= useState("")
@@ -75,25 +76,31 @@ function ProfilerLogin(){
     return(
         <div>
             <input 
+            className="sign"
             type="email"
             placeholder="Email"
             onChange= {(e)=> setEmail(e.target.value)}
             ></input>
+
             <input
+            className="pword"
             type="password"
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
             <button onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
 
-            <h3>GAP</h3>
+            <h3></h3>
 
             <input 
+            className="log"
             type="email"
             placeholder="Email"
             onChange= {(e)=> setEmail(e.target.value)}
             ></input>
+
             <input
+            className="pword"
             type="password"
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}

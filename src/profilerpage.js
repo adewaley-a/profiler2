@@ -1118,10 +1118,10 @@ const hideEdit=async()=>{
     </div>
 
     <div className='unit'>
-      <h1 className='hp1'>birthday</h1>
+      <h1 className='hp1'>Birthday</h1>
       <div>
         <input
-         maxlength="25"
+         maxlength="30"
           type="text"
           value={newNote2}
           onChange={(e) => setNewNote2(e.target.value)}
@@ -1140,7 +1140,7 @@ const hideEdit=async()=>{
     </div>
       
     <div className='unit'>
-      <h1 className='hp1'>Interest in? 1</h1>
+      <h1 className='hp1'>Interested in? 1</h1>
       <div>
         <input
          maxlength="25"
@@ -1163,7 +1163,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>Interest in? 2</h1>
+      <h1 className='hp1'>Interested in? 2</h1>
       <div>
         <input
          maxlength="25"
@@ -1186,7 +1186,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>Interest in? 3</h1>
+      <h1 className='hp1'>Interested in? 3</h1>
       <div>
         <input
          maxlength="25"
@@ -1216,7 +1216,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote6}
           onChange={(e) => setNewNote6(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="e.g 'portfolio'"
         />
        {show6? <button onClick={handleAddNote6}>Add</button> :null}
       </div>
@@ -1238,7 +1238,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote7}
           onChange={(e) => setNewNote7(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="https://example.com"
         />
        {show7? <button onClick={handleAddNote7}>Add</button> :null}
       </div>
@@ -1254,14 +1254,14 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>App name(e.g instagram) 1</h1>
+      <h1 className='hp1'>App name 1(e.g Instagram)</h1>
       <div>
         <input
          maxlength="20"
           type="text"
           value={newNote8}
           onChange={(e) => setNewNote8(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="Instagram"
         />
        {show8? <button onClick={handleAddNote8}>Add</button> :null}
       </div>
@@ -1283,7 +1283,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote9}
           onChange={(e) => setNewNote9(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="https://example.com"
         />
        {show9? <button onClick={handleAddNote9}>Add</button> :null}
       </div>
@@ -1299,14 +1299,14 @@ const hideEdit=async()=>{
   
 
     <div className='unit'>
-      <h1 className='hp1'>App name(e.g twitter) 2</h1>
+      <h1 className='hp1'>App name 2(e.g twitter)</h1>
       <div>
         <input
          maxlength="20"
           type="text"
           value={newNote10}
           onChange={(e) => setNewNote10(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="twitter"
         />
        {show10? <button onClick={handleAddNote10}>Add</button> :null}
       </div>
@@ -1328,7 +1328,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote11}
           onChange={(e) => setNewNote11(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="https://example.com"
         />
        {show11? <button onClick={handleAddNote11}>Add</button> :null}
       </div>
@@ -1344,14 +1344,14 @@ const hideEdit=async()=>{
   
 
     <div className='unit'>
-      <h1 className='hp1'>App name(e.g linkedin) 3</h1>
+      <h1 className='hp1'>App name 3(e.g linkedin)</h1>
       <div>
         <input
          maxlength="20"
           type="text"
           value={newNote12}
           onChange={(e) => setNewNote12(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="LinkedIn"
         />
        {show12? <button onClick={handleAddNote12}>Add</button> :null}
       </div>
@@ -1373,7 +1373,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote13}
           onChange={(e) => setNewNote13(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="https://example.com"
         />
        {show13? <button onClick={handleAddNote13}>Add</button> :null}
       </div>
@@ -1388,14 +1388,14 @@ const hideEdit=async()=>{
     </div>
 
     <div className='unit'>
-      <h1 className='hp1'>App name(e.g behance) </h1>
+      <h1 className='hp1'>App name 4(e.g behance) </h1>
       <div>
         <input
          maxlength="20"
           type="text"
           value={newNote14}
           onChange={(e) => setNewNote14(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="behance"
         />
        {show14? <button onClick={handleAddNote14}>Add</button> :null}
       </div>
@@ -1417,7 +1417,7 @@ const hideEdit=async()=>{
           type="text"
           value={newNote15}
           onChange={(e) => setNewNote15(e.target.value)}
-          placeholder="one of your interests"
+          placeholder="https://example.com"
         />
        {show15? <button onClick={handleAddNote15}>Add</button> :null}
       </div>
