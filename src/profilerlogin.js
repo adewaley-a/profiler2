@@ -6,12 +6,14 @@ import { useEffect, useState } from "react"
 import React, { useContext } from 'react';
 import { VisibilityContext } from './VisibilityContext'; 
 import './profilerlogin.css'
+import ptagbot from './profilerbot.png' 
 
 function ProfilerLogin(){
     const [email, setEmail]= useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
     const [user, setUser]= useState(null)
+    const [error, setError] = useState(null)
     const { toggleVisibility } = useContext(VisibilityContext); 
 
     useEffect(() => {
@@ -67,7 +69,10 @@ function ProfilerLogin(){
                 
         }
        
-        catch(err){console.error(err)}
+        catch(err){console.error(err)
+        
+          setError(err.message);
+        }
 
         
     }
@@ -75,6 +80,8 @@ function ProfilerLogin(){
 
     return(
         <div className="logcover">
+          <img src={ptagbot} className='ptagbot' />
+          <h3 className="gapes">New account?</h3>
             <input 
             className="sign"
             type="email"
@@ -88,10 +95,14 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
+            <button className="loginaccess" onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
+            
 
-            <h3></h3>
-
+            <h3 className="gape"></h3>
+            <h3 className="gape"></h3>
+           
+            
+            <h3 className="gapes">Registered?</h3>
             <input 
             className="log"
             type="email"
@@ -105,7 +116,8 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button onClick={() => {toggleVisibility(); logIn();  }} >Login</button>
+            <button className="loginaccess" onClick={() => {toggleVisibility(); logIn();  }} >Login</button>
+            {error && <p className="warning" style={{ color: 'red' }}>{error}</p>}
         </div>
     )
 }

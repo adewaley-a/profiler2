@@ -8,7 +8,7 @@ import bot from './profilerbot.png'
 import copy from './copyiconw.png' 
 import { Link } from 'react-router-dom';
 import { signOut, getAuth } from 'firebase/auth';
-
+import Plink from './plink';
 
 
 function Display(props){
@@ -19,7 +19,7 @@ function Display(props){
     
 
     const showCurrentURL = () => {
-        setCurrentURL( "Check my profile -> "  + window.location.href);
+        setCurrentURL(  window.location.href);
     }
 
     function myFunction() {
@@ -105,7 +105,7 @@ function Display(props){
             
         <div className='displaycover' >
 
-
+        <Plink className="plink" href="https://profilertag.netlify.app" target="_blank"> <button id='signlink'>Sign in</button> </Plink>
         <img src={bot} className='bot' />
         <div  className='name'>{props.loadings ? <p>Loading data...</p> :  <h1> {props.message} </h1>  }</div>
            <h2 className='title'>About me ...  </h2>

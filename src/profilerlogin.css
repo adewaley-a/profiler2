@@ -1,13 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 .logcover{
     margin: auto;
-    margin-top: 20%;
+    margin-top: 12%;
     width: 40%;
     padding-left: 9.5%;
 }
+.ptagbot{
+    width:110px;
+    height:110px;
+    padding-left: 28.4%;
+ }
 button{
     font-family: "Russo One", sans-serif;
-    font-size: smaller;
+    font-size: 66%;
     font-weight: 100;
 }
 .sign{
@@ -23,18 +28,39 @@ button{
 .log{
     height: 30px;
 }
+.loginaccess{
+    height: 20px;
+    width: 55px;
+}
+.gapes{
+    font-family: "Russo One", sans-serif;
+    color:  rgb(29, 255, 29);
+    font-size: 75%;
+}
+.warning{
+    font-size: 60%;
+    margin: auto;
+    text-align: center;
+}
 
-@media (max-width:600px){
+
+@media (max-width:900px){
 
     .logcover{
         margin: auto;
-        margin-top: 37%;
+        margin-top: 12%;
         width: 40%;
         padding-left: 9.5%;
     }
+    .ptagbot{
+        width:110px;
+        height:110px;
+        padding-left: 20.4%;
+     }
     .sign{
         background-image: linear-gradient(to right, rgb(19, 19, 19), green);
         margin-left: 5px;
+        width: 68%;
     }
     
     .pword{
@@ -42,6 +68,13 @@ button{
     }
     
     .log{
+        width: 68%;
+        margin-left: 5px;
+    }
+    .gapes{
+        font-family: "Russo One", sans-serif;
+        color:  rgb(29, 255, 29);
+        font-size: 75%;
         margin-left: 5px;
     }
 
@@ -51,13 +84,19 @@ button{
 
     .logcover{
         margin: auto;
-        margin-top: 37%;
+        margin-top: 33%;
         width: 54%;
         padding-left: 9.5%;
     }
+    .ptagbot{
+        width:110px;
+        height:110px;
+        padding-left: 15%;
+     }
     .sign{
         background-image: linear-gradient(to right, rgb(19, 19, 19), green);
         margin-left: 5px;
+        width: 77%;
     }
     
     .pword{
@@ -65,6 +104,13 @@ button{
     }
     
     .log{
+        margin-left: 5px;
+        width: 77%;
+    }
+    .gapes{
+        font-family: "Russo One", sans-serif;
+        color:  rgb(29, 255, 29);
+        font-size: 75%;
         margin-left: 5px;
     }
 
