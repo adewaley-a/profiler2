@@ -1254,7 +1254,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>App name 1(e.g Instagram)</h1>
+      <h1 className='hp1'>App name 1(e.g facebook)</h1>
       <div>
         <input
          maxlength="20"

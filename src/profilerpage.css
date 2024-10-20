@@ -58,12 +58,12 @@ input{
   }
   .next{
   color: white;
-  padding: 25px;
+  padding: 19px;
   border-radius: 15px;
   position:fixed;
   top:78%;
   z-index:100;
-  box-shadow: 0px 0px 50px 20px rgb(63, 229, 21) ;
+  box-shadow: 0px 0px 20px 10px rgb(63, 229, 21) ;
   }
 
   .nextnest {
