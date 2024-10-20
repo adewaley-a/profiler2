@@ -5,7 +5,7 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import React, { useContext } from 'react';
 import { VisibilityContext } from './VisibilityContext'; 
-import './profilerlogin.css'
+import './profilerlogin.scss'
 import ptagbot from './profilerbot.png' 
 
 function ProfilerLogin(){
@@ -80,7 +80,7 @@ function ProfilerLogin(){
    
 
     return(
-      <div >
+      <div className="bodyl">
 
 {circles.map((circle, index) => (
         <div key={index} className="circle-container">

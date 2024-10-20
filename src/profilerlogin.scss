@@ -1,10 +1,110 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+.bodyl{
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.circle-container {
+    $particleNum: 400;
+    $particleColor: hsl(134, 86%, 51%);
+  
+    position: absolute;
+    transform: translateY(-10vh);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  
+    .circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      background-image: radial-gradient(
+        hsl(134, 86%, 51%),
+        hsl(134, 86%, 51%),
+        hsla(180, 100%, 80%, 0) 56%
+      );
+  
+      animation: fadein-frames 200ms infinite, scale-frames 2s infinite;
+  
+      @keyframes fade-frames {
+        0% {
+          opacity: 1;
+        }
+  
+        50% {
+          opacity: 0.7;
+        }
+  
+        100% {
+          opacity: 1;
+        }
+      }
+  
+      @keyframes scale-frames {
+        0% {
+          transform: scale3d(0.4, 0.4, 1);
+        }
+  
+        50% {
+          transform: scale3d(2.2, 2.2, 1);
+        }
+  
+        100% {
+          transform: scale3d(0.4, 0.4, 1);
+        }
+      }
+    }
+  
+    $particleBaseSize: 8;
+  
+    
+    @for $i from 1 through $particleNum {
+      &:nth-child(#{$i}) {
+        $circleSize: random($particleBaseSize);
+        width: $circleSize + px;
+        height: $circleSize + px;
+  
+        $startPositionY: random(10) + 200;
+        $framesName: "move-frames-" + $i;
+        $moveDuration: random(7000) + ms;
+  
+        animation-name: #{$framesName};
+        animation-duration: $moveDuration;
+        animation-delay: 100 + random(9000) + ms;
+  
+        @keyframes #{$framesName} {
+          from {
+            transform: translate3d(
+              #{random(100) + vw},
+              #{$startPositionY + vh},
+              0
+            );
+          }
+  
+          to {
+            transform: translate3d(
+              #{random(100) + vw},
+              #{- $startPositionY - random(30) + vh},
+              0
+            );
+          }
+        }
+  
+        .circle {
+          animation-delay: random(4000) + ms;
+        }
+      }
+    }
+  }
+
 .logcover{
     margin: auto;
     margin-top: 2.5%;
     width: 40%;
     padding-left: 9.5%;
-    border: 1px solid red;
+   
 }
 .ptagbot{
     width:110px;
@@ -15,7 +115,7 @@
     width:fit-content;
     margin: auto;
     height: fit-content;
-    border: 1px solid red;
+   
     position: relative;
     margin-top: 13%;
  }
@@ -72,7 +172,6 @@ button{
         width:fit-content;
         margin: auto;
         height: fit-content;
-        border: 1px solid red;
         position: relative;
         margin-top: 8%;
      }
@@ -133,7 +232,6 @@ button{
         width:fit-content;
         margin: auto;
         height: fit-content;
-        border: 1px solid red;
         position: relative;
         margin-top: 19%;
      }
