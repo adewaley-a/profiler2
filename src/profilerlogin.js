@@ -76,16 +76,25 @@ function ProfilerLogin(){
 
         
     }
+    const circles = Array.from({ length: 100 }, (_, i) => i + 1);
    
 
     return(
+      <div >
+
+{circles.map((circle, index) => (
+        <div key={index} className="circle-container">
+          <div className="circle"></div>
+        </div>
+      ))}
+
+        <div className="botcover">  <img src={ptagbot} className='ptagbot' /> </div>
         <div className="logcover">
-          <img src={ptagbot} className='ptagbot' />
           <h3 className="gapes">New account?</h3>
             <input 
             className="sign"
             type="email"
-            placeholder="Email"
+            placeholder="randomuser@gmail.com"
             onChange= {(e)=> setEmail(e.target.value)}
             ></input>
 
@@ -106,7 +115,7 @@ function ProfilerLogin(){
             <input 
             className="log"
             type="email"
-            placeholder="Email"
+            placeholder="randomuser@gmail.com"
             onChange= {(e)=> setEmail(e.target.value)}
             ></input>
 
@@ -119,6 +128,8 @@ function ProfilerLogin(){
             <button className="loginaccess" onClick={() => {toggleVisibility(); logIn();  }} >Login</button>
             {error && <p className="warning" style={{ color: 'red' }}>{error}</p>}
         </div>
+
+        </div>  
     )
 }
 export default ProfilerLogin

@@ -1,14 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 .logcover{
     margin: auto;
-    margin-top: 12%;
+    margin-top: 2.5%;
     width: 40%;
     padding-left: 9.5%;
+    border: 1px solid red;
 }
 .ptagbot{
     width:110px;
     height:110px;
-    padding-left: 28.4%;
+    margin: auto;
+ }
+ .botcover{
+    width:fit-content;
+    margin: auto;
+    height: fit-content;
+    border: 1px solid red;
+    position: relative;
+    margin-top: 13%;
  }
 button{
     font-family: "Russo One", sans-serif;
@@ -31,6 +40,7 @@ button{
 .loginaccess{
     height: 20px;
     width: 55px;
+    
 }
 .gapes{
     font-family: "Russo One", sans-serif;
@@ -48,34 +58,59 @@ button{
 
     .logcover{
         margin: auto;
-        margin-top: 12%;
+        margin-top: 0.5%;
         width: 40%;
         padding-left: 9.5%;
     }
+    
     .ptagbot{
-        width:110px;
-        height:110px;
-        padding-left: 20.4%;
+        width:90px;
+        height:90px;
+        margin: auto;
      }
+     .botcover{
+        width:fit-content;
+        margin: auto;
+        height: fit-content;
+        border: 1px solid red;
+        position: relative;
+        margin-top: 8%;
+     }
+     
+    .loginaccess{
+            display: grid;
+            width: 69.4%;
+            margin-left: 5px;
+            line-height: 30px;
+            height: 30px;
+            border-radius: 3.5px;
+            margin-bottom: 27px;
+    }
     .sign{
         background-image: linear-gradient(to right, rgb(19, 19, 19), green);
         margin-left: 5px;
         width: 68%;
+        border-radius: 3.5px;
     }
     
     .pword{
-    
+        width: 68%;
+        border-radius: 3.5px;
     }
     
     .log{
         width: 68%;
         margin-left: 5px;
+        border-radius: 3.5px;
     }
     .gapes{
         font-family: "Russo One", sans-serif;
         color:  rgb(29, 255, 29);
         font-size: 75%;
         margin-left: 5px;
+    }
+    .gape{
+        
     }
 
 }
@@ -84,28 +119,48 @@ button{
 
     .logcover{
         margin: auto;
-        margin-top: 33%;
-        width: 54%;
-        padding-left: 9.5%;
+        margin-top: 0.5%;
+        width: 60%;
+        padding-left: 4.5%;
     }
+    
     .ptagbot{
-        width:110px;
-        height:110px;
-        padding-left: 15%;
+        width:90px;
+        height:90px;
+        margin: auto;
      }
+     .botcover{
+        width:fit-content;
+        margin: auto;
+        height: fit-content;
+        border: 1px solid red;
+        position: relative;
+        margin-top: 19%;
+     }
+     
+    .loginaccess{
+            display: grid;
+            width: 71%;
+            margin-left: 5px;
+            line-height: 30px;
+            height: 30px;
+            border-radius: 3.5px;
+            margin-bottom: 27px;
+            width: 88%;
+    }
     .sign{
         background-image: linear-gradient(to right, rgb(19, 19, 19), green);
         margin-left: 5px;
-        width: 77%;
+        width: 86%;
     }
     
     .pword{
-    
+        width: 86%;
     }
     
     .log{
         margin-left: 5px;
-        width: 77%;
+        width: 86%;
     }
     .gapes{
         font-family: "Russo One", sans-serif;
