@@ -5,6 +5,10 @@
   position: relative;
   padding-bottom: 40px;
 }
+.processing{
+  color: hsl(134, 86%, 51%);
+  font-size: 69%;
+}
 
 .circle-container {
     $particleNum: 400;
@@ -141,6 +145,9 @@ button{
     height: 20px;
     width: 55px;
     
+}
+.loginaccess:hover {
+  background: rgb(3, 102, 10);
 }
 .gapes{
     font-family: "Russo One", sans-serif;

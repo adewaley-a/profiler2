@@ -15,6 +15,8 @@ function ProfilerLogin(){
     const [user, setUser]= useState(null)
     const [error, setError] = useState(null)
     const { toggleVisibility } = useContext(VisibilityContext); 
+    const [loadingsign, setLoadingsign] = useState(false);
+    const [loadinglog, setLoadinglog] = useState(false);
 
     useEffect(() => {
         // Check for auth state changes
@@ -39,7 +41,9 @@ function ProfilerLogin(){
       }, []);
 
     const signIn=async()=>{
-       
+     
+        setLoadinglog(false); // Stop loading after fetching is done
+      
         try
 
         { const userCredential = await createUserWithEmailAndPassword(auth, email, password)
@@ -52,17 +56,23 @@ function ProfilerLogin(){
         }
        
         catch(err){console.error(err)}
+        finally {
+          setLoadingsign(false); // Stop loading after fetching is done
+        }
         
     }
  
     const logIn=async()=>{
-       
+      
+        setLoadinglog(true); // Stop loading after fetching is done
+      
         try
 
         { const userCredential = await signInWithEmailAndPassword(auth, email, password)
                 
                 const user = userCredential.user
                 console.log("User logged in with UID:", user.uid)
+                
                 navigate(`/user/${user.uid}`)
                 return user.uid
 
@@ -70,9 +80,14 @@ function ProfilerLogin(){
         }
        
         catch(err){console.error(err)
-        
+          
+          
           setError(err.message);
         }
+        finally {
+          setLoadinglog(false); // Stop loading after fetching is done
+        }
+       
 
         
     }
@@ -105,6 +120,7 @@ function ProfilerLogin(){
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
             <button className="loginaccess" onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
+            {loadingsign ? <p className="processing">processing...</p> :  <p></p>  }
             
 
             <h3 className="gape"></h3>
@@ -126,6 +142,7 @@ function ProfilerLogin(){
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
             <button className="loginaccess" onClick={() => {toggleVisibility(); logIn();  }} >Login</button>
+            {loadinglog ? <p className="processing">processing...</p> :  <p></p>  }
             {error && <p className="warning" style={{ color: 'red' }}>{error}</p>}
         </div>
 

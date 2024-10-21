@@ -57,6 +57,9 @@ p{
     font-size: 95%;
     color: #ffffff;
 }
+.socialbtn:hover {
+  background: rgb(3, 102, 10);
+}
 .gc{
     border-radius: 6px;
     background:  rgb(0, 177, 0);
@@ -67,6 +70,9 @@ p{
     margin-bottom: 22px;
     font-size: 95%;
     color: #ffffff;
+}
+.gc:hover {
+  background: rgb(3, 102, 10);
 }
 .bot{
    width: 90px;
@@ -146,6 +152,11 @@ p{
     color: #ffffff;
     
 }
+.gco:hover {
+  background: rgb(3, 102, 10);
+}
+
+
 .gci{
     border-radius: 6px;
     display: inline-block;
@@ -338,7 +349,7 @@ p{
 @media (max-width: 470px){
 
   .swip{
-    width: 50%;
+    width: 72%;
   }
   .plink{
     border-radius: 3px;

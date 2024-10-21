@@ -15,9 +15,8 @@ function Display(props){
 
     const [currentURL, setCurrentURL] = useState('');
 
-
     
-
+    
     const showCurrentURL = () => {
         setCurrentURL(  window.location.href);
     }
@@ -124,7 +123,7 @@ function Display(props){
     
     </Swiper>
 
-           <div     style={{ pointerEvents: isClickable ? 'auto' : 'none' }}  onClick={groupc}  className='gc'>{props.empty6s ? <p>Empty link</p> :<div>{props.message6}  </div>}
+           <div   onClick={groupc}  className='gc'>{props.empty6s ? <p>Empty link</p> :<div>{props.message6}  </div>}
            
            </div>
            <a className='gclink' ref={divRef}  > {props.message7} </a> 
