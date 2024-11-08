@@ -16,6 +16,7 @@
     justify-content: center;
     font-family: "Open sans";
     color: rgb(171, 232, 179);
+    overflow-x: hidden;
     border-radius: 10px;
     border: 1.5px solid rgb(0, 177, 0);
     padding-bottom: 2%;
