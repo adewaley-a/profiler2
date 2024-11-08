@@ -14,13 +14,15 @@ function ProfilerLogin(){
     const navigate = useNavigate()
     const [user, setUser]= useState(null)
     const [error, setError] = useState(null)
-    const { toggleVisibility } = useContext(VisibilityContext); 
+    const { toggleVisibility, resetVisibility } = useContext(VisibilityContext); 
     const [loadingsign, setLoadingsign] = useState(false);
     const [loadinglog, setLoadinglog] = useState(false);
 
     useEffect(() => {
         // Check for auth state changes
+        resetVisibility()
         const unsubscribe = onAuthStateChanged(auth, (user) => {
+          
           if (user) {
             setUser(user);
           } else {
@@ -119,7 +121,7 @@ function ProfilerLogin(){
             placeholder="Password"
             onChange= {(e)=> setPassword(e.target.value)}
             ></input>
-            <button className="loginaccess" onClick={() => {toggleVisibility();toggleVisibility(); signIn();  }} >Sign up</button>
+            <button className="loginaccess" onClick={() => {toggleVisibility(); signIn();  }} >Sign up</button>
             {loadingsign ? <p className="processing">processing...</p> :  <p></p>  }
             
 

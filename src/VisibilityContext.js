@@ -11,8 +11,12 @@ export const VisibilityProvider = ({ children }) => {
     setIsComponentVisible(!isComponentVisible);
   };
 
+  const resetVisibility = () => {
+    setIsComponentVisible(false)
+  }
+
   return (
-    <VisibilityContext.Provider value={{ isComponentVisible, toggleVisibility }}>
+    <VisibilityContext.Provider value={{ isComponentVisible, toggleVisibility, resetVisibility}}>
       {children}
     </VisibilityContext.Provider>
   );
