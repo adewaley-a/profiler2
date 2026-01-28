@@ -88,7 +88,7 @@ p{
    font-family: "Russo One", sans-serif;
    --bg-size: 400%;
    --color-one:  rgb(29, 255, 29);
-   --color-two: rgb(18, 18, 18);
+   --color-two: rgb(255, 255, 255);
   
    background: linear-gradient(
                  90deg,
