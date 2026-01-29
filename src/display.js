@@ -17,9 +17,26 @@ function Display(props){
 
     
     
-    const showCurrentURL = () => {
-        setCurrentURL(  window.location.href);
-    }
+    const showCurrentURL = async () => {
+      try {
+        const longUrl = window.location.href;
+    
+        const res = await fetch("https://your-backend-url/create-short-link", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            longUrl: longUrl,
+            userId: props.message // or any user identifier
+          })
+        });
+    
+        const data = await res.json();
+        setCurrentURL(data.shortURL); // 👈 IMPORTANT
+      } catch (err) {
+        console.error("Failed to shorten link", err);
+      }
+    };
+    
 
     function myFunction() {
         // Get the text field
@@ -145,7 +162,7 @@ function Display(props){
               
         <div className='gca'>
         <div className='gco'  onClick={showCurrentURL}>Get link </div>
-        <input className='gci' id='URL'value=  {currentURL}/><div  onClick={myFunction}  className='gco' > <img id='copy' src={copy}/></div>
+        <input className='gci' id='URL'value=  {currentURL} readOnly /><div  onClick={myFunction}  className='gco' > <img id='copy' src={copy}/></div>
         </div>  
 
         </div>
