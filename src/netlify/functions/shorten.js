@@ -8,7 +8,7 @@ export async function handler(event) {
       "https://api.short.io/links",
       {
         originalURL: longUrl,
-        domain: "yourdomain.short.gy",
+        domain: "gwqf.short.gy",
         path: userId
       },
       {
