@@ -1,7 +1,7 @@
 import axios from "axios";
 
-app.post("/create-short-link", async (req, res) => {
-  const { longUrl, userId } = req.body;
+export async function handler(event) {
+  const { longUrl, userId } = JSON.parse(event.body);
 
   try {
     const response = await axios.post(
@@ -9,7 +9,7 @@ app.post("/create-short-link", async (req, res) => {
       {
         originalURL: longUrl,
         domain: "yourdomain.short.gy",
-        path: userId // optional: custom path per user
+        path: userId
       },
       {
         headers: {
@@ -19,8 +19,16 @@ app.post("/create-short-link", async (req, res) => {
       }
     );
 
-    res.json({ shortURL: response.data.shortLink });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        shortURL: response.data.shortLink
+      })
+    };
   } catch (err) {
-    res.status(500).json({ error: "Failed to create link" });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Failed to create link" })
+    };
   }
-});
+}

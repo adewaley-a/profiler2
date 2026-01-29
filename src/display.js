@@ -21,7 +21,7 @@ function Display(props){
       try {
         const longUrl = window.location.href;
     
-        const res = await fetch("https://your-backend-url/create-short-link", {
+        const res = await fetch("/.netlify/functions/shorten", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -31,7 +31,7 @@ function Display(props){
         });
     
         const data = await res.json();
-        setCurrentURL(data.shortLink); // 👈 IMPORTANT
+        setCurrentURL(data.shortURL); // 👈 IMPORTANT
       } catch (err) {
         console.error("Failed to shorten link", err);
       }
