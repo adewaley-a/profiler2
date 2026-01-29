@@ -31,7 +31,7 @@ function Display(props){
         });
     
         const data = await res.json();
-        setCurrentURL(data.shortURL); // 👈 IMPORTANT
+        setCurrentURL(data.shortLink); // 👈 IMPORTANT
       } catch (err) {
         console.error("Failed to shorten link", err);
       }
@@ -41,6 +41,7 @@ function Display(props){
     function myFunction() {
         // Get the text field
         var copyText = document.getElementById("URL");
+        
       
         // Select the text field
     
@@ -162,7 +163,7 @@ function Display(props){
               
         <div className='gca'>
         <div className='gco'  onClick={showCurrentURL}>Get link </div>
-        <input className='gci' id='URL'value=  {currentURL} readOnly /><div  onClick={myFunction}  className='gco' > <img id='copy' src={copy}/></div>
+        <input className='gci' id='URL' value=  {currentURL} readOnly /><div  onClick={myFunction}  className='gco' > <img id='copy' src={copy}/></div>
         </div>  
 
         </div>
