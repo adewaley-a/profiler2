@@ -162,7 +162,7 @@ function Display(props){
                 
               
         <div className='gca'>
-        <div className='gco'  onClick={showCurrentURL}>Get link </div>
+        <div className='gco'  onClick={showCurrentURL}>Get links </div>
         <input className='gci' id='URL' value=  {currentURL} readOnly /><div  onClick={myFunction}  className='gco' > <img id='copy' src={copy}/></div>
         </div>  
 
