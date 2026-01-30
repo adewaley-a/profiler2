@@ -26,7 +26,13 @@ function Display(props){
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ longUrl })
         });
-    
+
+        if (!response.ok) {
+          const errorText = await response.text(); // See the actual HTML error
+          console.error("Server returned an error:", errorText);
+          return;
+        }
+        
         const data = await res.json();
         setCurrentURL(data.shortURL);
       } catch (err) {
