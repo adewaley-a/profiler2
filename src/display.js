@@ -24,18 +24,16 @@ function Display(props){
         const res = await fetch("/.netlify/functions/shorten", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            longUrl: longUrl,
-           
-          })
+          body: JSON.stringify({ longUrl })
         });
     
         const data = await res.json();
-        setCurrentURL(data.shortURL); // 👈 IMPORTANT
+        setCurrentURL(data.shortURL);
       } catch (err) {
         console.error("Failed to shorten link", err);
       }
     };
+    
     
 
     function myFunction() {
