@@ -1,13 +1,18 @@
 
-import React, { useContext ,useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, deleteDoc, doc, query, where, onSnapshot } from 'firebase/firestore';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import React, { useContext, useState, useEffect } from 'react';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db, auth } from './firebase';
-import Profilerpage1 from './profilerpage1';
 import Display from './display';
-import { Route, Routes, useNavigate } from "react-router-dom"
-import './profilerpage.css'
-import { signOut, getAuth, onAuthStateChanged, setPersistence, browserSessionPersistence, browserLocalPersistence, signInAnonymously} from 'firebase/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
+import './profilerpage.css';
+import { 
+  onAuthStateChanged, 
+  setPersistence, 
+  browserLocalPersistence, 
+  signInAnonymously 
+} from 'firebase/auth';
 import { VisibilityContext } from './VisibilityContext';
 
 
@@ -17,9 +22,10 @@ const Notes = () => {
 
   setPersistence(auth, browserLocalPersistence)
   .then(() => {
+    console.log("anon ti wole")
 
     return signInAnonymously(auth);
-    console.log("anon ti wole")
+   
   })
   .catch((error) => {
     console.error('Error setting persistence:', error);

@@ -1,22 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {getAuth, GoogleAuthProvider} from "firebase/auth"
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { createContext, useState, useEffect } from "react";
-
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey:process.env.REACT_APP_FIREBASEKEY,
+  apiKey: process.env.REACT_APP_FIREBASEKEY,
   authDomain: "profiler-backend.firebaseapp.com",
   projectId: "profiler-backend",
   storageBucket: "profiler-backend.appspot.com",
@@ -26,15 +16,17 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const App = initializeApp(firebaseConfig);
-const analytics = getAnalytics(App);
-export const auth = getAuth(App)
+const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line no-unused-vars
+const analytics = getAnalytics(app);
+export const auth = getAuth(app);
 
-export const googleProvider= new GoogleAuthProvider()
-const db = getFirestore(App)
-export { db }
+export const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app);
+export { db };
 
-const getFirestoreData = async () => {
+export const getFirestoreData = async () => {
+  if (!auth.currentUser) return;
   const querySnapshot = await getDocs(collection(db, "users", auth.currentUser.uid, "favorites"));
-  querySnapshot.forEach((doc) => console.log(doc.data())); // log each doc
-}
+  querySnapshot.forEach((doc) => console.log(doc.data())); 
+};

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './display.css';
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,7 +12,6 @@ import Plink from './plink';
 function Display(props) {
   const [currentURL, setCurrentURL] = useState('');
 
-  // --- CORRECTED FUNCTION ---
   const showCurrentURL = async () => {
     try {
       const longUrl = window.location.href;
@@ -22,7 +22,6 @@ function Display(props) {
         body: JSON.stringify({ longUrl })
       });
 
-      // 1. Check if the function actually exists/responded (Fixes 404/500 crashes)
       if (!res.ok) {
         const errorText = await res.text();
         console.error("Function Error:", errorText);
@@ -30,10 +29,8 @@ function Display(props) {
         return;
       }
 
-      // 2. Parse the JSON response
       const data = await res.json();
 
-      // 3. Update state with the shortURL from backend
       if (data.shortURL) {
         setCurrentURL(data.shortURL);
       } else {
@@ -45,19 +42,16 @@ function Display(props) {
     }
   };
 
-  // --- CLIPBOARD FUNCTION ---
   function myFunction() {
     if (!currentURL) {
       alert("No URL to copy! Click 'Get links' first.");
       return;
     }
-    // Using the modern clipboard API instead of document.getElementById
     navigator.clipboard.writeText(currentURL)
       .then(() => alert("Copied the text: " + currentURL))
       .catch(err => console.error("Copy failed", err));
   }
 
-  // ... (Your existing groupc, groupc1, etc. functions)
   const divRef = useRef(null);
   const divRef1 = useRef(null);
   const divRef2 = useRef(null);
@@ -74,7 +68,7 @@ function Display(props) {
   return (
     <div>
       <div className='displaycover'>
-        <Plink className="plink" href="https://profilertag.netlify.app" target="_blank">
+        <Plink className="plink" href="https://profilertag.netlify.app" target="_blank" rel="noopener noreferrer">
           <button id='signlink'>Sign in</button>
         </Plink>
         
@@ -97,7 +91,7 @@ function Display(props) {
           <SwiperSlide className='Swiperslide'>{props.message5}</SwiperSlide>
         </Swiper>
 
-        {/* Hidden link refs for your groupc logic */}
+        {/* Hidden link refs */}
         <a className='gclink' ref={divRef} style={{ display: 'none' }}>{props.message7}</a>
         <a className='gclink' ref={divRef1} style={{ display: 'none' }}>{props.message9}</a>
         <a className='gclink' ref={divRef2} style={{ display: 'none' }}>{props.message11}</a>
@@ -120,7 +114,6 @@ function Display(props) {
           </div>
         </div>
 
-        {/* --- GET LINK SECTION --- */}
         <div className='gca'>
           <div className='gco' onClick={showCurrentURL}>Get links</div>
           <input 

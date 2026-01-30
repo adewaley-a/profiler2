@@ -1,14 +1,12 @@
 
+/* eslint-disable no-unused-vars */
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProfilerLogin from './profilerlogin';
 import ProfilerPage from './profilerpage';
-import Profilerpage1 from './profilerpage1';
-import Display from './display';
-import {Route, Routes, BrowserRouter} from "react-router-dom"
-import { db, auth } from './firebase';
-import  { useState, useEffect } from 'react';
-import { signOut, getAuth, onAuthStateChanged, signInAnonymously} from 'firebase/auth';
+import { Route, Routes } from "react-router-dom";
+import { auth } from './firebase';
+import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 
 function App() {
  
@@ -40,9 +38,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<ProfilerLogin/>}/>
-        <Route path="/user/:uid" element={<ProfilerPage></ProfilerPage>}/>
-       
-        
+        <Route path="/user/:uid" element={<ProfilerPage></ProfilerPage>}/> 
       </Routes>
    </div>
   );
