@@ -26,7 +26,7 @@ function Display(props){
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             longUrl: longUrl,
-            userId: props.message // or any user identifier
+           
           })
         });
     
