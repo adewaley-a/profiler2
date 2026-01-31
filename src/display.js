@@ -14,23 +14,35 @@ function Display(props) {
 
   const showCurrentURL = async () => {
     try {
-      const longUrl = window.location.href;
-
+      // 1. Force a clean, absolute URL
+      // TinyURL will reject links that don't start with http/https
+      let longUrl = window.location.href;
+      if (!longUrl.startsWith('http')) {
+        longUrl = `https://${longUrl}`;
+      }
+  
+      // 2. Clear previous state if needed
+      // setCurrentURL(""); 
+  
       const res = await fetch("/.netlify/functions/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ longUrl })
       });
-
+  
+      // 3. Improved Error Handling
       if (!res.ok) {
-        const errorText = await res.text();
-        console.error("Function Error:", errorText);
-        alert("Server error: Make sure your Netlify Function is deployed and API keys are set.");
+        // Try to get JSON error first, fallback to text
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Function Error Details:", errorData);
+        
+        const errorMessage = errorData.error || "Server error";
+        alert(`Error: ${errorMessage}. Check your TinyURL API key and monthly limits.`);
         return;
       }
-
+  
       const data = await res.json();
-
+  
       if (data.shortURL) {
         setCurrentURL(data.shortURL);
       } else {
@@ -38,7 +50,7 @@ function Display(props) {
       }
     } catch (err) {
       console.error("Failed to shorten link:", err);
-      alert("Network error: Could not connect to the shortening service.");
+      alert("Network error: Check your internet or Netlify deployment status.");
     }
   };
 
