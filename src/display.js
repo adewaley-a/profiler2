@@ -11,18 +11,17 @@ import Plink from './plink';
 
 function Display(props) {
   const [currentURL, setCurrentURL] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const showCurrentURL = async () => {
+    if (loading) return;
+
+    setLoading(true);
     try {
-      // 1. Force a clean, absolute URL
-      // TinyURL will reject links that don't start with http/https
       let longUrl = window.location.href;
       if (!longUrl.startsWith('http')) {
         longUrl = `https://${longUrl}`;
       }
-  
-      // 2. Clear previous state if needed
-      // setCurrentURL(""); 
   
       const res = await fetch("/.netlify/functions/shorten", {
         method: "POST",
@@ -30,37 +29,40 @@ function Display(props) {
         body: JSON.stringify({ longUrl })
       });
   
-      // 3. Improved Error Handling
       if (!res.ok) {
-        // Try to get JSON error first, fallback to text
         const errorData = await res.json().catch(() => ({}));
-        console.error("Function Error Details:", errorData);
-        
         const errorMessage = errorData.error || "Server error";
-        alert(`Error: ${errorMessage}. Check your TinyURL API key and monthly limits.`);
+        alert(`Error: ${errorMessage}.`);
+        setLoading(false);
         return;
       }
   
       const data = await res.json();
   
       if (data.shortURL) {
-        setCurrentURL(data.shortURL);
+        // REMOVE HTTPS FOR DISPLAY: strips 'http://' or 'https://'
+        const cleanLink = data.shortURL.replace(/^https?:\/\//, '');
+        setCurrentURL(cleanLink);
       } else {
         console.error("Short URL not found in response", data);
       }
     } catch (err) {
       console.error("Failed to shorten link:", err);
-      alert("Network error: Check your internet or Netlify deployment status.");
+      alert("Network error: Check your connection.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  // UPDATED COPY FUNCTION: Copies exactly what is in the state (no https)
   function myFunction() {
     if (!currentURL) {
       alert("No URL to copy! Click 'Get links' first.");
       return;
     }
+    
     navigator.clipboard.writeText(currentURL)
-      .then(() => alert("Copied the text: " + currentURL))
+      .then(() => alert("Copied: " + currentURL))
       .catch(err => console.error("Copy failed", err));
   }
 
@@ -103,7 +105,6 @@ function Display(props) {
           <SwiperSlide className='Swiperslide'>{props.message5}</SwiperSlide>
         </Swiper>
 
-        {/* Hidden link refs */}
         <a className='gclink' ref={divRef} style={{ display: 'none' }}>{props.message7}</a>
         <a className='gclink' ref={divRef1} style={{ display: 'none' }}>{props.message9}</a>
         <a className='gclink' ref={divRef2} style={{ display: 'none' }}>{props.message11}</a>
@@ -127,7 +128,18 @@ function Display(props) {
         </div>
 
         <div className='gca'>
-          <div className='gco' onClick={showCurrentURL}>Get links</div>
+          <div 
+            className='gco' 
+            onClick={showCurrentURL} 
+            style={{ 
+              opacity: loading ? 0.6 : 1, 
+              pointerEvents: loading ? 'none' : 'auto',
+              cursor: 'pointer' 
+            }}
+          >
+            {loading ? "..." : currentURL ? "Link Ready" : "Get links"}
+          </div>
+          
           <input 
             className='gci' 
             id='URL' 
@@ -135,7 +147,7 @@ function Display(props) {
             placeholder="Short link will appear here" 
             readOnly 
           />
-          <div onClick={myFunction} className='gco'>
+          <div onClick={myFunction} className='gco' style={{ cursor: 'pointer' }}>
             <img id='copy' src={copy} alt="copy" />
           </div>
         </div>
