@@ -137,7 +137,7 @@ function Display(props) {
               cursor: 'pointer' 
             }}
           >
-            {loading ? "..." : currentURL ? "Link Ready" : "Get links"}
+            {loading ? "..." : currentURL ? "Link Ready" : "Get bio url"}
           </div>
           
           <input 
