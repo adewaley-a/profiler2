@@ -19,12 +19,16 @@ function ProfilerLogin() {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
+    
+    // Use setVisible (or equivalent from your context) instead of just toggle
     const { toggleVisibility, resetVisibility } = useContext(VisibilityContext); 
     const [loadingsign, setLoadingsign] = useState(false);
     const [loadinglog, setLoadinglog] = useState(false);
 
     useEffect(() => {
-        resetVisibility();
+        // Remove resetVisibility() from here. 
+        // We want the login page to be "neutral".
+        
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
           if (currentUser) {
             setUser(currentUser);
@@ -40,15 +44,18 @@ function ProfilerLogin() {
         });
     
         return () => unsubscribe();
-    }, [resetVisibility]);
+    }, []); // Empty dependency array so it doesn't reset on every render
 
     const signIn = async () => {
         setLoadingsign(true);
         try { 
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const newUser = userCredential.user;
+            
+            // 1. Set visibility to TRUE only AFTER success
+            toggleVisibility(); 
+            
             navigate(`/user/${newUser.uid}`);
-            return newUser.uid;
         } catch (err) {
             console.error(err);
             setError(err.message);
@@ -56,14 +63,17 @@ function ProfilerLogin() {
             setLoadingsign(false);
         }
     };
- 
+
     const logIn = async () => {
         setLoadinglog(true);
         try { 
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const loggedUser = userCredential.user;
+            
+            // 2. Set visibility to TRUE only AFTER success
+            toggleVisibility(); 
+
             navigate(`/user/${loggedUser.uid}`);
-            return loggedUser.uid;
         } catch (err) {
             console.error(err);
             setError(err.message);
@@ -98,10 +108,11 @@ function ProfilerLogin() {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="loginaccess" onClick={() => { toggleVisibility(); signIn(); }} >Sign up</button>
+            {/* Removed toggleVisibility from onClick, moved inside function */}
+            <button className="loginaccess" onClick={signIn} >Sign up</button>
             {loadingsign ? <p className="processing">processing...</p> : <p></p>}
 
-            <h3 className="gapes">Registered?</h3>
+          <h3 className="gapes">Registered?</h3>
             <input 
               className="log"
               type="email"
@@ -115,7 +126,8 @@ function ProfilerLogin() {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="loginaccess" onClick={() => { toggleVisibility(); logIn(); }} >Login</button>
+            {/* Removed toggleVisibility from onClick, moved inside function */}
+            <button className="loginaccess" onClick={logIn} >Login</button>
             {loadinglog ? <p className="processing">processing...</p> : <p></p>}
             {error && <p className="warning" style={{ color: 'red' }}>{error}</p>}
         </div>

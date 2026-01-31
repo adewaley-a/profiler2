@@ -1446,7 +1446,7 @@ const hideEdit=async()=>{
      {show21?   <div className='nextnest'><button className='next' onClick={() => { Next(); }}>Next</button></div>  :null}   
  
     
-     {!isComponentVisible && <button className='backbtn' onClick={Edit}>
+     {isComponentVisible && <button className='backbtn' onClick={Edit}>
           Edit
         </button>}
       
