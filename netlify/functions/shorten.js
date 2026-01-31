@@ -18,7 +18,7 @@ exports.handler = async (event) => {
       "https://api.short.io/links",
       {
         originalURL: longUrl,
-        domain: "gwqf.short.gy"
+        domain: "mybio.short.gy"
       },
       {
         headers: {
