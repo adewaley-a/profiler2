@@ -111,6 +111,10 @@ function Display(props) {
         <a className='gclink' ref={divRef3} style={{ display: 'none' }}>{props.message13}</a>
         <a className='gclink' ref={divRef4} style={{ display: 'none' }}>{props.message15}</a>
 
+        <div className='linkbtn' onClick={() => handleLinkOpen(divRef)}>
+          {props.message6}
+        </div>
+
         <h2 className='title'>Socials</h2>
         <div className='socialcover'>
           <div className='socialbtn' onClick={() => handleLinkOpen(divRef1)}>
