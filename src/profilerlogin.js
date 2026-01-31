@@ -25,27 +25,7 @@ function ProfilerLogin() {
     const [loadingsign, setLoadingsign] = useState(false);
     const [loadinglog, setLoadinglog] = useState(false);
 
-    useEffect(() => {
-        // Remove resetVisibility() from here. 
-        // We want the login page to be "neutral".
-        
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          if (currentUser) {
-            setUser(currentUser);
-          } else {
-            signInAnonymously(auth)
-              .then((userCredential) => {
-                setUser(userCredential.user);
-              })
-              .catch((err) => {
-                console.error('Anonymous sign-in failed:', err);
-              });
-          }
-        });
-    
-        return () => unsubscribe();
-    }, []); // Empty dependency array so it doesn't reset on every render
-
+   
     const signIn = async () => {
         setLoadingsign(true);
         try { 
