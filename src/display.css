@@ -149,7 +149,7 @@ p{
     flex-grow: 1;
     height: 30px;
     line-height: 30px;
-    font-size: 95%;
+    font-size: 80%;
     color: #ffffff;
     
 }
@@ -180,6 +180,9 @@ p{
 }
 .sociale{
   line-height: 8px;
+}
+#URL{
+  text-align: center;
 }
 
 @media (max-width: 950px) {
