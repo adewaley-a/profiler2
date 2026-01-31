@@ -7,7 +7,11 @@ exports.handler = async (event) => {
     const { longUrl } = JSON.parse(event.body);
     const API_KEY = process.env.TINYURL_API_KEY;
 
-    // Use built-in fetch (no require needed)
+    // 1. Create a unique branded alias
+    // Generates something like 'biotag-a9z2'
+    const uniqueId = Math.random().toString(36).substring(2, 6);
+    const customAlias = `biotag-${uniqueId}`;
+
     const response = await fetch("https://api.tinyurl.com/create", {
       method: "POST",
       headers: {
@@ -17,7 +21,8 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({
         url: longUrl,
-        domain: "tinyurl.com"
+        domain: "tinyurl.com",
+        alias: customAlias 
       })
     });
 
@@ -29,10 +34,16 @@ exports.handler = async (event) => {
         body: JSON.stringify({ shortURL: data.data.tiny_url })
       };
     } else {
+      // 2. Enhanced Error Logic:
+      // If the alias is STILL taken (rare with the randomizer),
+      // we return a clear message to the frontend.
+      const errorMsg = data.errors ? data.errors[0] : "Request failed";
+      
       return {
         statusCode: 400,
         body: JSON.stringify({ 
-          error: data.errors ? data.errors[0] : "TinyURL rejected the request" 
+          error: errorMsg,
+          suggestion: "Try clicking the button again to generate a new unique alias."
         })
       };
     }
