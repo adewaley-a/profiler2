@@ -1021,9 +1021,9 @@ const hideEdit=async()=>{
             {note.text}</div>
         ))}
 
-        message6 = {notes6.map(note => (
-          <div key={note.id}> Click my 
-           " { note.text} " link</div>
+        message6 =  {notes6.map(note => (
+          <div key={note.id}> 
+          Click my link - { note.text} </div>
         ))}
 
         message7 = {notes7.map(note => (
@@ -1238,7 +1238,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>Paste link</h1>
+      <h1 className='hp1'>Paste link(https://xx...)</h1>
       <div>
         <input
           type="text"
@@ -1283,7 +1283,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>link to account 1</h1>
+      <h1 className='hp1'>link to account 1(https://xx...)</h1>
       <div>
         <input
           type="text"
@@ -1328,7 +1328,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>link to account 2</h1>
+      <h1 className='hp1'>link to account 2(https://xx...)</h1>
       <div>
         <input
           type="text"
@@ -1373,7 +1373,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>link to account 3</h1>
+      <h1 className='hp1'>link to account 3(https://xx...)</h1>
       <div>
         <input
           type="text"
@@ -1417,7 +1417,7 @@ const hideEdit=async()=>{
 
 
     <div className='unit'>
-      <h1 className='hp1'>link to account 4</h1>
+      <h1 className='hp1'>link to account 4(https://xx...)</h1>
       <div>
         <input
           type="text"

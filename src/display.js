@@ -112,7 +112,7 @@ function Display(props) {
         <a className='gclink' ref={divRef4} style={{ display: 'none' }}>{props.message15}</a>
 
         <div className='linkbtn' onClick={() => handleLinkOpen(divRef)}>
-          {props.message6}
+        {props.empty6s ? <p className='sociale'>Empty</p> : <div> {props.message6}</div>}
         </div>
 
         <h2 className='title'>Socials</h2>
