@@ -73,6 +73,9 @@ function ProfilerLogin() {
         ))}
 
         <div className="botcover"> <img src={ptagbot} className='ptagbot' alt="bot" /> </div>
+
+        <h1 className="pcover">PROFILERTAG </h1>
+
         <div className="logcover">
           <h3 className="gapes">New account?</h3>
             <input 

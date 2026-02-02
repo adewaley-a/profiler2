@@ -197,6 +197,70 @@ p{
   text-align: center;
 }
 
+.wallet-container {
+  display: flex;
+  flex-direction: row;
+  /* This ensures the div reduces with the screen width */
+  width: 100%;
+  max-width: 600px; 
+  margin: auto;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  height: 26px;
+  margin-bottom: 10px;
+}
+
+.section {
+  padding: 12px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.label-section {
+  background-color: rgb(0, 177, 0);
+  font-weight: 400;
+  border-right: 1px solid  rgb(0, 164, 0);
+  flex-shrink: 0; /* Prevents "Support us" from squishing */
+  width: 15%;
+  font-size: 70%;
+}
+
+.address-section {
+  background-color:rgba(0, 164, 0, 0.298);
+  color: #f5ff69;
+  font-family: monospace;
+  flex-grow: 1;
+  /* These lines allow the address to shrink and show "..." if too small */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  font-size: 89%; /* Smoothly scales text size */
+  width: 70%;
+}
+
+.icon-section {
+  background-color:rgb(0, 177, 0);
+  flex-shrink: 0;
+  border-left: 1px solid rgb(0, 164, 0);
+  width: 15%;
+}
+.icon-section:hover {
+  background-color: rgb(12, 114, 12); /* Slightly lighter gray */
+}
+.icon-section:active {
+  background-color: rgb(22, 139, 25);
+  transform: scale(0.75); /* Shrinks the whole div slightly when pressed */
+}
+.capy {
+ margin-bottom: 6px;
+}
+
 @media (max-width: 950px) {
 
   .plink{
@@ -284,6 +348,73 @@ p{
     font-size: 90%;
     color: #ffffff;
 }
+
+.wallet-container {
+  display: flex;
+  flex-direction: row;
+  /* This ensures the div reduces with the screen width */
+  width: 100%;
+  max-width: 450px; 
+  margin: auto;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  height: 26px;
+  margin-bottom: 10px;
+}
+
+.section {
+  padding: 12px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.label-section {
+  background-color: rgb(0, 177, 0);
+  font-weight: 600;
+  border-right: 1px solid  rgb(0, 164, 0);
+  flex-shrink: 0; /* Prevents "Support us" from squishing */
+  width: 15%;
+  font-size: 50%;
+}
+
+.address-section {
+  background-color:rgba(0, 164, 0, 0.298);
+  color: #f5ff69;
+  font-family: monospace;
+  flex-grow: 1;
+  /* These lines allow the address to shrink and show "..." if too small */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  font-size: 76%; /* Smoothly scales text size */
+  width: 70%;
+}
+
+.icon-section {
+  background-color:rgb(0, 177, 0);
+  flex-shrink: 0;
+  border-left: 1px solid rgb(0, 164, 0);
+  width: 15%;
+}
+.icon-section:hover {
+  background-color: rgb(12, 114, 12); /* Slightly lighter gray */
+}
+.icon-section:active {
+  background-color: rgb(22, 139, 25);
+  transform: scale(0.75); /* Shrinks the whole div slightly when pressed */
+}
+.capy {
+ margin-bottom: 6px;
+ height: 5%;
+ width:5px;
+}
+
 }
 
 @media (max-width: 600px){
@@ -383,6 +514,73 @@ p{
 .birthinput{
   font-size:78% ;
 }
+
+.wallet-container {
+  display: flex;
+  flex-direction: row;
+  /* This ensures the div reduces with the screen width */
+  width: 100%;
+  max-width: 390px; 
+  margin: auto;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  height: 26px;
+  margin-bottom: 10px;
+}
+
+.section {
+  padding: 12px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.label-section {
+  background-color: rgb(0, 177, 0);
+  font-weight: 600;
+  border-right: 1px solid  rgb(0, 164, 0);
+  flex-shrink: 0; /* Prevents "Support us" from squishing */
+  width: 15%;
+  font-size: 50%;
+}
+
+.address-section {
+  background-color:rgba(0, 164, 0, 0.298);
+  color: #f5ff69;
+  font-family: monospace;
+  flex-grow: 1;
+  /* These lines allow the address to shrink and show "..." if too small */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  font-size: 68%; /* Smoothly scales text size */
+  width: 70%;
+}
+
+.icon-section {
+  background-color:rgb(0, 177, 0);
+  flex-shrink: 0;
+  border-left: 1px solid rgb(0, 164, 0);
+  width: 15%;
+}
+.icon-section:hover {
+  background-color: rgb(12, 114, 12); /* Slightly lighter gray */
+}
+.icon-section:active {
+  background-color: rgb(22, 139, 25);
+  transform: scale(0.75); /* Shrinks the whole div slightly when pressed */
+}
+.capy {
+ margin-bottom: 6px;
+ height: 5%;
+ width:5px;
+}
+
 }
 
 
@@ -399,14 +597,15 @@ p{
     background:  rgb(0, 177, 0) ;
     border: rgb(0, 177, 0); ;
     position: absolute;
-    right: 37px;
-    top: 35px;
+    right: 43px;
+    top: 62px;
   }
   #signlink{
     height: 6px;
     width: 50px;
     border: 0px;
     font-size: 63%;
+    
   }
   .linkbtn{
     width: fit-content;
@@ -483,4 +682,76 @@ p{
 .birthinput{
   font-size:78% ;
 }
+
+.wallet-container {
+  display: flex;
+  flex-direction: row;
+  /* This ensures the div reduces with the screen width */
+  width: 100%;
+  max-width: 300px; 
+  margin: auto;
+  background-color: #1a1a1a;
+  border-top: 1px solid rgb(0, 177, 0);
+  border-radius: 0%;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  height: 26px;
+  margin-bottom: 10px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
 }
+
+.section {
+  padding: 12px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ border-top-left-radius: 0%;
+}
+
+.label-section {
+  background-color: rgb(0, 177, 0);
+  font-weight: 700;
+  border-right: 1px solid  rgb(0, 164, 0);
+  flex-shrink: 0; /* Prevents "Support us" from squishing */
+  width: 14%;
+  font-size: 49%;
+  border-bottom-left-radius: 18px;
+}
+
+.address-section {
+  background-color:rgba(0, 164, 0, 0.298);
+  color: #f5ff69;
+  font-family: monospace;
+  flex-grow: 1;
+  /* These lines allow the address to shrink and show "..." if too small */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  font-size: 51%; /* Smoothly scales text size */
+  width: 78%;
+}
+
+.icon-section {
+  background-color:rgb(0, 177, 0);
+  flex-shrink: 0;
+  border-left: 1px solid rgb(0, 164, 0);
+  width: 8%;
+  border-bottom-right-radius: 18px;
+}
+.icon-section:hover {
+  background-color: rgb(12, 114, 12); /* Slightly lighter gray */
+}
+.icon-section:active {
+  background-color: rgb(22, 139, 25);
+  transform: scale(0.75); /* Shrinks the whole div slightly when pressed */
+}
+.capy {
+ margin-bottom: 6px;
+ height: 5%;
+ width:5px;
+}
+
+}
+

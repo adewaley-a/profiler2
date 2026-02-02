@@ -12,23 +12,30 @@ import Plink from './plink';
 function Display(props) {
   const [currentURL, setCurrentURL] = useState('');
   const [loading, setLoading] = useState(false);
+  
+  // ETH Wallet Address
+  const ethAddress = "0x2D7A152b7a67b992820B58ba2Af0B9eA469ee464";
+
+  // NEW: Function to copy ETH address
+  const handleEthCopy = () => {
+    navigator.clipboard.writeText(ethAddress)
+      .then(() => alert("Address copied!"))
+      .catch(err => console.error("Copy failed", err));
+  };
 
   const showCurrentURL = async () => {
     if (loading) return;
-
     setLoading(true);
     try {
       let longUrl = window.location.href;
       if (!longUrl.startsWith('http')) {
         longUrl = `https://${longUrl}`;
       }
-  
       const res = await fetch("/.netlify/functions/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ longUrl })
       });
-  
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         const errorMessage = errorData.error || "Server error";
@@ -36,15 +43,10 @@ function Display(props) {
         setLoading(false);
         return;
       }
-  
       const data = await res.json();
-  
       if (data.shortURL) {
-        // REMOVE HTTPS FOR DISPLAY: strips 'http://' or 'https://'
         const cleanLink = data.shortURL.replace(/^https?:\/\//, '');
         setCurrentURL(cleanLink);
-      } else {
-        console.error("Short URL not found in response", data);
       }
     } catch (err) {
       console.error("Failed to shorten link:", err);
@@ -54,13 +56,11 @@ function Display(props) {
     }
   };
 
-  // UPDATED COPY FUNCTION: Copies exactly what is in the state (no https)
   function myFunction() {
     if (!currentURL) {
       alert("No URL to copy! Click 'Get links' first.");
       return;
     }
-    
     navigator.clipboard.writeText(currentURL)
       .then(() => alert("Copied: " + currentURL))
       .catch(err => console.error("Copy failed", err));
@@ -82,6 +82,20 @@ function Display(props) {
   return (
     <div>
       <div className='displaycover'>
+        
+        {/* RESPONSIVE WALLET BAR */}
+        <div className="wallet-container">
+          <div className="section label-section">
+            Support us (Eth)
+          </div>
+          <div className="section address-section">
+            {ethAddress}
+          </div>
+          <div className="section icon-section" onClick={handleEthCopy}>
+            <img id='copy' className='capy' src={copy} alt="copy" />
+          </div>
+        </div>
+
         <Plink className="plink" href="https://profilertag.netlify.app" target="_blank" rel="noopener noreferrer">
           <button id='signlink'>Sign in</button>
         </Plink>
@@ -112,7 +126,7 @@ function Display(props) {
         <a className='gclink' ref={divRef4} style={{ display: 'none' }}>{props.message15}</a>
 
         <div className='linkbtn' onClick={() => handleLinkOpen(divRef)}>
-        {props.empty6s ? <p className='sociale'>Empty</p> : <div> {props.message6}</div>}
+          {props.empty6s ? <p className='sociale'>Empty</p> : <div> {props.message6}</div>}
         </div>
 
         <h2 className='title'>Socials</h2>
